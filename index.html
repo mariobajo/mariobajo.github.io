@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mario Bajo Traver</title>
+<meta name="description" content="Mario Bajo Traver, Head of the Investment Strategies Unit at Banco de España. Research on fixed income, asset allocation, portfolio construction and machine learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE formal and calm: a central banker's academic home, research first
+   IDEA a central bank bulletin: ruled columns, a sober teal, figures set like a statistical annex
+   PICTURE the portrait in the teal masthead; below, a career timeline drawn at true time scale
+   COLOUR white ground, ink #14161a, deep teal #0b5d63 masthead and contact band, rule grey
+   TYPE Libre Caslon Text for names and headings, Inter for text and figures
+   LAYOUT laptop: masthead with name, role and figures left, portrait bleeding to the right edge; phone: name, portrait, figures */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0d1416);--ink:light-dark(#14161a,#e6ecec);--mute:light-dark(#5b6266,#9aa8aa);--rule:light-dark(#d9dddf,#26343a);--soft:light-dark(#f2f5f5,#131d20);--teal:#0b5d63;--tealx:light-dark(#0b5d63,#5fb7bd);--deep:#073d42;--on:#f3f7f6}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:var(--tealx);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--tealx);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:"Libre Caslon Text",Georgia,serif;font-weight:400;line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,4vw,42px);margin-bottom:8px}
+h3{font-size:21px;line-height:1.25}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.lede{color:var(--mute);max-width:62ch;margin:0 0 28px}
+nav.top{position:sticky;top:0;z-index:5;background:var(--deep);color:var(--on);border-bottom:1px solid #0e5257}
+nav.top .wrap{display:flex;align-items:center;gap:8px 24px;flex-wrap:wrap;padding:10px max(5vw,16px)}
+nav.top .me{font-family:"Libre Caslon Text",Georgia,serif;font-size:18px;color:var(--on);text-decoration:none;margin-right:auto}
+nav.top .links{display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.top .links a{color:#cfe3e1;text-decoration:none;font-size:15px;padding:6px 0}
+nav.top .links a:hover{color:#fff;text-decoration:underline}
+.mast{background:var(--teal);color:var(--on);overflow:hidden}
+.mast .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch}
+.mast .txt{padding:clamp(40px,6vw,88px) max(5vw,16px) clamp(32px,4vw,56px)}
+.mast h1{font-size:clamp(44px,6.2vw,76px);color:#fff}
+.mast .role{font-size:19px;margin:18px 0 6px;color:#fff}
+.mast .inst{color:#cfe3e1;margin:0 0 22px;max-width:52ch}
+.mast .intro{max-width:56ch;margin:0 0 26px;color:#e7f0ef}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #6fa9a8;color:#fff;text-decoration:none;border-radius:2px;font-size:15px}
+.btn:hover{background:#0e6d74}
+.btn.solid{background:#fff;color:var(--deep);border-color:#fff}
+.btn.solid:hover{background:#e4efee}
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:36px;border-top:1px solid #4f8f8f}
+.figs div{padding:14px 12px 0 0}
+.figs b{display:block;font:400 clamp(28px,3.2vw,38px)/1 "Libre Caslon Text",Georgia,serif;color:#fff}
+.figs span{font-size:13px;color:#cfe3e1;line-height:1.35;display:block;margin-top:6px}
+.photo{position:relative;background:#0a0a0a}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.about{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about p{margin:0 0 16px;max-width:68ch}
+.fields{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.fields li{border:1px solid var(--rule);padding:6px 12px;font-size:14px;border-radius:2px;background:var(--soft)}
+.side{border-top:2px solid var(--ink)}
+.side dl{margin:0}
+.side dt{font-size:13px;color:var(--mute);padding-top:14px}
+.side dd{margin:2px 0 0;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.alt{background:var(--soft);border-block:1px solid var(--rule)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.tabs button{font:500 15px Inter,sans-serif;min-height:44px;padding:0 16px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:2px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--teal);border-color:var(--teal);color:#fff}
+.tabs button:hover{border-color:var(--tealx)}
+.pubs{list-style:none;padding:0;margin:0;border-top:2px solid var(--ink)}
+.pubs li{display:grid;grid-template-columns:10em minmax(0,1fr);gap:4px 24px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.pubs .yr{font-variant-numeric:tabular-nums;color:var(--mute);font-size:15px;padding-top:2px}
+.pubs .ti{font-family:"Libre Caslon Text",Georgia,serif;font-size:18px;line-height:1.35;margin:0 0 4px}
+.pubs .ve{margin:0;color:var(--mute);font-size:15px}
+.pubs .ve i{color:var(--ink)}
+.pubs .en{margin:2px 0 0;font-size:14px;color:var(--mute);font-style:italic}
+.tag{display:inline-block;font-size:13px;padding:1px 8px;border-radius:2px;margin-right:6px;background:color-mix(in srgb,var(--tealx) 14%,transparent);color:var(--tealx);white-space:nowrap}
+.lk{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px}
+.count{font-size:14px;color:var(--mute);margin:14px 0 0}
+.courses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:40px}
+.course{background:var(--bg);border:1px solid var(--rule);padding:22px 22px 18px;border-radius:2px;display:flex;flex-direction:column}
+.course h3{margin-bottom:10px}
+.course p{margin:0 0 12px;color:var(--mute);font-size:15px}
+.course ul{margin:auto 0 0;padding-left:18px;font-size:15px}
+.teach{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.rows{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.rows li{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:4px 20px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.rows .yr{color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.book{border:1px solid var(--rule);background:var(--bg);padding:22px;border-radius:2px}
+.book .cover{aspect-ratio:3/4;max-width:150px;background:var(--teal);color:#fff;padding:16px 14px;font:400 15px/1.25 "Libre Caslon Text",Georgia,serif;margin-bottom:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:4px 4px 0 var(--rule)}
+.book .cover small{font:12px Inter,sans-serif;color:#cfe3e1}
+.tl{border-top:2px solid var(--ink)}
+.axis,.tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:20px;align-items:center}
+.axis{padding:10px 0 6px;font-size:13px;color:var(--mute)}
+.ticks{position:relative;height:18px}
+.ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+.tr{padding:11px 0;border-top:1px solid var(--rule)}
+.tr .who b{display:block;font-weight:600;font-size:15px;line-height:1.35}
+.tr .who span{font-size:14px;color:var(--mute)}
+.track{position:relative;height:22px;background:repeating-linear-gradient(90deg,var(--rule) 0 1px,transparent 1px 15.6%)}
+.bar{position:absolute;top:3px;height:16px;background:color-mix(in srgb,var(--tealx) 45%,transparent);border-radius:1px}
+.bar.bde{background:var(--tealx)}
+.bar em{position:absolute;left:calc(100% + 6px);top:-2px;font-style:normal;font-size:13px;color:var(--mute);white-space:nowrap}
+.bar.r em{left:auto;right:calc(100% + 6px)}
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,48px);margin-top:48px}
+.cols3 h3{border-top:2px solid var(--ink);padding-top:14px;margin-bottom:6px}
+.cols3 ul{list-style:none;margin:0;padding:0}
+.cols3 li{padding:10px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.cols3 li span{display:block;color:var(--mute);font-size:14px}
+.contact{background:var(--teal);color:var(--on)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{color:#fff}
+.contact p{color:#e2eeed;max-width:56ch}
+.contact dl{margin:0;border-top:1px solid #4f8f8f}
+.contact dt{font-size:13px;color:#bcd8d6;padding-top:14px}
+.contact dd{margin:2px 0 0;padding-bottom:14px;border-bottom:1px solid #4f8f8f;overflow-wrap:anywhere}
+.contact a{color:#fff}
+.copy{font:500 14px Inter,sans-serif;min-height:36px;padding:0 12px;margin-left:10px;border:1px solid #6fa9a8;background:transparent;color:#fff;border-radius:2px;cursor:pointer;vertical-align:middle}
+footer{background:var(--deep);color:#bcd8d6;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(5vw,16px)}
+@media(max-width:900px){.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.mast .wrap{grid-template-columns:minmax(0,1fr)}.photo{order:2;height:min(110vw,520px)}.mast .txt{display:contents}.mast .hd{order:1;padding:40px max(5vw,16px) 28px}.mast .rest{order:3;padding:28px max(5vw,16px) 36px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
+@media(max-width:600px){.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.pubs li,.rows li{grid-template-columns:minmax(0,1fr)}nav.top .me{width:100%}.ticks span.o{display:none}}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="Main">
+  <div class="wrap">
+    <a class="me" href="#top">Mario Bajo Traver</a>
+    <div class="links">
+      <a href="#about">About</a><a href="#research">Research</a><a href="#teaching">Teaching</a><a href="#career">Career</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="mast" id="top">
+  <div class="wrap">
+    <div class="txt">
+      <div class="hd">
+        <h1>Mario Bajo Traver</h1>
+        <p class="role">Head of the Investment Strategies Unit</p>
+        <p class="inst">Department of Market Analysis and Intelligence, DG Operations, Markets and Payment Systems, Banco de España</p>
+      </div>
+      <div class="rest">
+        <p class="intro">I work on fixed income, strategic and tactical asset allocation, portfolio construction and machine learning in finance, and teach these subjects in the Master in Finance at Instituto BME.</p>
+        <div class="btns">
+          <a class="btn solid" href="#research">Research</a>
+          <a class="btn" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">SSRN</a>
+          <a class="btn" href="https://orcid.org/0009-0006-3791-2216">ORCID</a>
+          <a class="btn" href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">LinkedIn</a>
+        </div>
+        <div class="figs" id="figs"></div>
+      </div>
+    </div>
+    <div class="photo"><img src="img/mario-portrait.jpg" alt="Portrait of Mario Bajo Traver" width="760" height="1140"></div>
+  </div>
+</header>
+
+<section class="band" id="about">
+  <div class="wrap about">
+    <div>
+      <h2>About</h2>
+      <p>Mario Bajo Traver is Head of the Investment Strategies Unit (Department of Market Analysis and Intelligence) at Banco de España. He began his career in London as a Lecturer in Economics at London South Bank University, then worked as a consultant at Overlap Consulting and Analistas Financieros Internacionales (AFI) before joining Banco Sabadell in 2001, where he became Director of the Financial Advisory Department in Private Banking.</p>
+      <p>In 2007 he became a Senior Portfolio Manager at Banco de España, managing the ECB's USD reserves portfolio and the Bank's own funds portfolio, and in 2014 Head of the Risk Measurement Unit, a position he held until his appointment to his current role in 2025.</p>
+      <p>His research focuses on fixed income, asset allocation, portfolio construction and machine learning, and he has published in the Financial Analysts Journal, the Journal of Asset Management, The Journal of Fixed Income and The Journal of Impact and ESG Investing, among others.</p>
+      <ul class="fields" aria-label="Fields of interest">
+        <li>Strategic and tactical asset allocation</li><li>Fixed income and yield curve strategies</li><li>Portfolio construction and diversification</li><li>Performance evaluation</li><li>Regime-switching models</li><li>Financial risk management</li><li>Sustainable investing</li><li>Machine learning in finance</li>
+      </ul>
+    </div>
+    <aside class="side" aria-label="Education and certifications">
+      <dl>
+        <dt>Executive Master, 2015</dt><dd>Financial Risk Management, Instituto BME, Madrid</dd>
+        <dt>MSc, 1997</dt><dd>Economics, The London School of Economics and Political Science</dd>
+        <dt>Licenciatura, 1994</dt><dd>Economics and Business Administration, Universidad Autónoma de Madrid</dd>
+        <dt>Certifications</dt><dd>CAIIB, CFA Society Spain (2022) · MFIA, Instituto BME (2014) · EFA, EFPA (2005)</dd>
+        <dt>Languages and tools</dt><dd>Spanish (native), English (proficient) · Python, SQL Server, MATLAB, VBA, LaTeX</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="band alt" id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+    <p class="lede">Refereed articles, working papers and other publications. Links go to the published version (DOI) or to the SSRN working paper.</p>
+    <div class="tabs" role="group" aria-label="Filter publications" id="tabs">
+      <button type="button" data-k="all" aria-pressed="true">All</button>
+      <button type="button" data-k="pub" aria-pressed="false">Refereed articles</button>
+      <button type="button" data-k="wp" aria-pressed="false">Working papers</button>
+      <button type="button" data-k="oth" aria-pressed="false">Book and reports</button>
+      <button type="button" data-k="es" aria-pressed="false">In Spanish</button>
+    </div>
+    <ol class="pubs" id="pubs" reversed></ol>
+    <p class="count" id="count"></p>
+  </div>
+</section>
+
+<section class="band" id="teaching">
+  <div class="wrap">
+    <h2>Teaching</h2>
+    <p class="lede">Master in Finance, Instituto BME (Bolsas y Mercados Españoles), Madrid, since 2012.</p>
+    <div class="courses">
+      <article class="course"><h3>Advanced Fixed Income</h3><p>Yield curve analytics and active bond portfolio management.</p><ul><li>Duration and curve positioning</li><li>Carry, roll-down and butterfly trades</li><li>Principal components of the curve</li></ul></article>
+      <article class="course"><h3>Portfolio Construction</h3><p>From the investment policy to the strategic benchmark.</p><ul><li>Mean-variance and risk-based allocation</li><li>Diversification and regime-based models</li><li>Performance evaluation</li></ul></article>
+      <article class="course"><h3>Machine Learning</h3><p>Quantitative and machine learning methods for investment decisions.</p><ul><li>Clustering and hierarchical allocation</li><li>Regime detection</li><li>Python case studies</li></ul></article>
+    </div>
+    <div class="teach">
+      <div>
+        <h3 style="margin-bottom:12px">Teaching history</h3>
+        <ul class="rows">
+          <li><span class="yr">2012 – present</span><span>Advanced Fixed Income, Portfolio Construction and Machine Learning, Master in Finance, Instituto BME, Madrid</span></li>
+          <li><span class="yr">2010 – 2012</span><span>Lecturer in Finance, Escuela de Finanzas Aplicadas (EFA, Grupo AFI), Madrid</span></li>
+          <li><span class="yr">1998 – 2000</span><span>Master in Banking and Finance (Escuela de Finanzas Aplicadas) and Master in Banking Economics (Universidad de Murcia)</span></li>
+          <li><span class="yr">1994 – 1997</span><span>Macroeconomics and Spanish Economy, undergraduate and master level, London South Bank University</span></li>
+        </ul>
+      </div>
+      <div class="book">
+        <div class="cover" aria-hidden="true">Gestión activa de carteras de renta fija<small>Bajo &amp; Rodríguez · BME</small></div>
+        <h3>Gestión activa de carteras de renta fija: un enfoque práctico</h3>
+        <p style="margin:8px 0 0;color:var(--mute);font-size:15px">With E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. A practical companion to the fixed income course.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="career">
+  <div class="wrap">
+    <h2>Career</h2>
+    <p class="lede">More than thirty years across academia, consulting, private banking and central banking.</p>
+    <div class="tl">
+      <div class="axis"><span class="lab">Position</span><div class="ticks" id="ticks"></div></div>
+      <div id="tl"></div>
+    </div>
+    <div class="cols3">
+      <div><h3>Working groups</h3><ul>
+        <li>CGFS (BIS) Working Group on Market-Making and Proprietary Trading<span>Representative of Banco de España, 2013–2014. CGFS Papers No. 52</span></li>
+        <li>ECB working group on structured finance<span>Asset-backed securities and covered bonds, 2014</span></li>
+        <li>Eurosystem groups on financial risk and reserve management<span>Including WGFRA and the ECB FX and Bond Market Contact Group</span></li>
+      </ul></div>
+      <div><h3>Editorial service</h3><ul>
+        <li>Referee<span>Journal of Asset Management</span></li>
+      </ul></div>
+      <div><h3>Portfolio responsibilities</h3><ul>
+        <li>Investment policy and risk framework<span>Own funds, international reserves and monetary policy portfolios</span></li>
+        <li>Strategic asset allocation<span>Including currency distribution of reserves</span></li>
+        <li>Portfolio management<span>ECB USD reserves and Banco de España own funds (EUR)</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Contact</h2>
+      <p>For research collaboration, refereeing, teaching or speaking invitations, please write by e-mail.</p>
+      <p style="margin-top:24px"><img src="img/mario-office.jpg" alt="Mario Bajo Traver" width="640" height="857" style="width:min(220px,50%);height:auto;border:1px solid #4f8f8f"></p>
+    </div>
+    <dl>
+      <dt>E-mail</dt><dd><a href="mailto:mario.bajo@bde.es">mario.bajo@bde.es</a><button class="copy" type="button" id="copy">Copy</button></dd>
+      <dt>Address</dt><dd>Banco de España, c/ Alcalá 48, 28014 Madrid, Spain</dd>
+      <dt>ORCID</dt><dd><a href="https://orcid.org/0009-0006-3791-2216">0009-0006-3791-2216</a></dd>
+      <dt>SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">Author page</a></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">mario-bajo-msc-mfia-caiib</a></dd>
+    </dl>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Mario Bajo Traver</span><span>Views expressed in the research listed here are the author's and do not necessarily reflect those of Banco de España or the Eurosystem.</span></div></footer>
+
+<script>
+{
+const ssrn=id=>['SSRN','https://papers.ssrn.com/sol3/papers.cfm?abstract_id='+id];
+const doi=d=>['DOI','https://doi.org/'+d];
+const P=[
+{k:'pub',y:'2027',st:'Forthcoming',t:'Hierarchical Core-Orbital Allocation: Decoupling Clustering from Optimization in Portfolio Construction',v:'The Journal of Financial Data Science',l:[]},
+{k:'pub',y:'2027',st:'Forthcoming',t:'Regret-Based Portfolio Allocation: Minimizing Opportunity Cost and Its Dispersion',v:'The Journal of Portfolio Management',l:[ssrn(6322898)]},
+{k:'pub',y:'2026',t:'Harvesting Term and Credit Risk Premia: A Regime-Based Fixed-Income Allocation Framework',v:'The Journal of Fixed Income',l:[doi('10.3905/jfi.2026.029')]},
+{k:'pub',y:'2026',w:'E. Rodríguez',t:'Balancing Financial and Sustainable Objectives in Sovereign Bond Portfolios Using Multi-Objective Optimization',v:'The Journal of Impact and ESG Investing',x:'6(3), 54–83',l:[doi('10.3905/jesg.2026.1.149')]},
+{k:'pub',y:'2025',t:'Enhancing Diversification in Fixed-Income Portfolios: An Entropy-Based Optimization Framework',v:'Journal of Asset Management',x:'26(7), 863–882',l:[doi('10.1057/s41260-025-00428-w')]},
+{k:'pub',y:'2023',w:'E. Rodríguez',t:'Green Parity and the Decarbonization of Corporate Bond Portfolios',v:'Financial Analysts Journal',x:'79(4), 118–137',l:[doi('10.1080/0015198X.2023.2246579')]},
+{k:'wp',y:'2026',st:'Revise and resubmit',t:'When Is the Yield Curve Enough? The Conditional Equivalence of Carry Strategies and Risk-Based Allocation',v:'SSRN WP 6480378',n:'The Journal of Fixed Income',l:[ssrn(6480378)]},
+{k:'wp',y:'2026',st:'Under review',t:'Market Regimes and Model Uncertainty in Portfolio Construction: Select or Diversify?',v:'SSRN WP 7533559',n:'The Journal of Portfolio Management',l:[ssrn(7533559)]},
+{k:'wp',y:'2026',st:'Under review',w:'A. Rodríguez Domínguez',t:'The Sharpe Stability Ratio: Temporal Consistency of Risk-Adjusted Performance',v:'SSRN WP 6344658',n:'Journal of Asset Management',l:[ssrn(6344658)]},
+{k:'wp',y:'2026',st:'Under review',t:'The Market Sets the Yardstick: A State-Contingent Standard for Evaluating Institutional Portfolios',v:'SSRN WP 7408778',n:'The Journal of Investing',l:[ssrn(7408778)]},
+{k:'wp',y:'2026',t:'The Capital-Risk Diversification Frontier',v:'SSRN WP 7685685',l:[ssrn(7685685)]},
+{k:'wp',y:'2022',w:'E. Rodríguez Alfonso',t:'Integrating the Carbon Footprint into the Construction of Corporate Bond Portfolios',v:'Banco de España Working Paper No. 2226; also SUERF Policy Brief No. 427',x:'Published in the Financial Analysts Journal (2023)',l:[]},
+{k:'oth',y:'2014',w:'E. Rodríguez',st:'Book',t:'Gestión activa de carteras de renta fija: un enfoque práctico',e:'Active Management of Fixed Income Portfolios: A Practical Approach',v:'Colección Estudios & Investigación, BME, Madrid',x:'ISBN 978-84-616-7388-9',l:[]},
+{k:'oth',y:'2014',st:'Report',t:'Market-Making and Proprietary Trading: Industry Trends, Drivers and Policy Implications',v:'CGFS Papers No. 52, Bank for International Settlements',x:'Member of the working group representing Banco de España',l:[]},
+{k:'es',y:'2014',w:'A. Díez-Caballero Pascual',t:'Aplicaciones prácticas del Análisis de Componentes Principales en Gestión de Carteras de Renta Fija (III): Estrategias de valor relativo mediante el ACP: PCA butterflies',e:'Relative Value Strategies and PCA Butterflies',v:'Análisis Financiero',x:'126, 106–125',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=5085724']]},
+{k:'es',y:'2014',t:'Aplicaciones prácticas del ACP en Gestión de Carteras de Renta Fija (II): Gestión del riesgo de tipo de interés de una cartera mediante PCA',e:'Managing the Interest Rate Risk of a Portfolio with PCA',v:'Análisis Financiero',x:'124, 39–54',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=4740708']]},
+{k:'es',y:'2014',t:'Aplicaciones prácticas del ACP en Gestión de Carteras de Renta Fija (I): Determinación de los principales factores de riesgo de la curva de rendimientos',e:'Determination of the Main Risk Factors of the Yield Curve',v:'Análisis Financiero',x:'124, 20–36',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=4740714']]},
+{k:'es',y:'2012',w:'E. Rodríguez',t:'Tipos de interés y diferenciales de crédito: algunas consideraciones prácticas para la gestión de carteras',e:'Interest Rates and Credit Spreads: Some Practical Issues for Portfolio Management',v:'Análisis Financiero',x:'120, 64–80',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=4537543']]},
+{k:'es',y:'2011',w:'E. Rodríguez',t:'Gestión activa de una cartera de bonos: un modelo cuantitativo de duración',e:'Active Bond Portfolio Management: A Quantitative Duration Model',v:'Análisis Financiero',x:'115, 72–89',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=4539490']]},
+{k:'es',y:'2010',w:'E. Rodríguez',t:'Estrategias sobre la curva de rendimientos: butterfly trades',e:'Yield Curve Strategies: Butterfly Trades',v:'Análisis Financiero Internacional',x:'142, 56–79',l:[['Google Scholar','https://scholar.google.com/scholar?oi=bibs&cluster=7126475666764388124&btnI=1&hl=es']]},
+{k:'es',y:'2010',w:'E. Rodríguez',t:'Estrategias de «carry» y «roll-down»: un enfoque teórico',e:'Carry and Roll-Down Strategies: A Theoretical Approach',v:'Análisis Financiero Internacional',x:'141, 44–64',l:[['Google Scholar','https://scholar.google.com/scholar?oi=bibs&cluster=4561057123179205615&btnI=1&hl=es']]},
+{k:'es',y:'2000',w:'A. Berges',t:'La riqueza financiera de las familias: nuevos enfoques de gestión',e:'The Financial Wealth of Families: New Management Approaches',v:'Economistas',x:'84, 164–171',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=93835']]}
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const label={all:'publications',pub:'refereed articles',wp:'working papers',oth:'book and reports',es:'publications in Spanish'};
+const list=document.getElementById('pubs'),count=document.getElementById('count');
+const item=p=>`<li><span class="yr">${p.st?`<span class="tag">${esc(p.st)}</span><br>`:''}${esc(p.y)}</span><div><p class="ti">${esc(p.t)}</p>${p.e?`<p class="en">${esc(p.e)}</p>`:''}<p class="ve">${p.w?'With '+esc(p.w)+'. ':''}<i>${esc(p.v)}</i>${p.x?', '+esc(p.x):''}${p.n?'. Submitted to '+esc(p.n):''}.</p>${p.l.length?`<div class="lk">${p.l.map(([a,h])=>`<a href="${esc(h)}">${esc(a)}</a>`).join('')}</div>`:''}</div></li>`;
+const show=k=>{const r=P.filter(p=>k==='all'||p.k===k);list.innerHTML=r.map(item).join('');count.textContent=r.length+' '+label[k];document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k))};
+document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(b.dataset.k)});
+show('all');
+
+const yrsSince=2026-1994;
+document.getElementById('figs').innerHTML=[[P.filter(p=>p.k==='pub').length,'refereed articles'],[P.filter(p=>p.k==='wp').length,'working papers'],[yrsSince,'years in economics and markets'],[2026-2012,'years teaching at Instituto BME']].map(([n,t])=>`<div><b>${n}</b><span>${t}</span></div>`).join('');
+
+const A=1994,B=2026.9,pc=y=>((y-A)/(B-A)*100).toFixed(2);
+const J=[
+[2025,2026.9,'Head of the Investment Strategies Unit','Banco de España',1],
+[2014.4,2025.4,'Head of the Risk Measurement Unit','Banco de España',1],
+[2014,2014.4,'Senior Financial Risk Manager','Banco de España',1],
+[2007,2014,'Senior Portfolio Manager','Banco de España',1],
+[2001,2007,'Director, Financial Advisory, Private Banking','Banco Sabadell',0],
+[2000,2001,'Senior Economist','finanzas.com, Ya.com (T-Online Group)',0],
+[1998,2000,'Senior Consultant, Banking Department','Analistas Financieros Internacionales',0],
+[1997,1998,'Consultant, Banking and Finance','Overlap Consulting',0],
+[1994,1997,'Lecturer in Economics','London South Bank University',0]];
+const span=(a,b)=>{const s=Math.floor(a),e=b>2026?'present':Math.floor(b);return s===e?String(s):s+'–'+e};
+document.getElementById('tl').innerHTML=J.map(([a,b,r,o,bde])=>`<div class="tr"><div class="who"><b>${r}</b><span>${o}</span></div><div class="track"><div class="bar${bde?' bde':''}${a>2010?' r':''}" style="left:${pc(a)}%;width:${pc(b)-pc(a)}%"><em>${span(a,b)}</em></div></div></div>`).join('');
+document.getElementById('ticks').innerHTML=[1994,2000,2005,2010,2015,2020,2026].map((y,i)=>`<span class="${i%2&&i<6?'o':''}" style="left:${pc(y)}%">${y}</span>`).join('');
+
+document.getElementById('copy').addEventListener('click',async e=>{try{await navigator.clipboard.writeText('mario.bajo@bde.es');e.target.textContent='Copied'}catch(_){e.target.textContent='Select the address to copy'}});
+}
+</script>
+</body>
+</html>
