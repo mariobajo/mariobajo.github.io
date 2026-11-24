@@ -1,0 +1,45 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Weekdays after the ECB publishes its daily yield curves (around 12:00 CET)
+    - cron: "40 11 * * 1-5"
+    - cron: "40 15 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Fetch market data from the ECB
+        continue-on-error: true
+        run: python3 scripts/fetch_market.py data/market.json https://mariobajo.github.io/data/market.json
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
