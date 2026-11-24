@@ -60,6 +60,20 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .curve svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .curve text{font:13px Inter,sans-serif;fill:#cfe3e1;paint-order:stroke;stroke:#0b5d63;stroke-width:4px}
 .cap{font-size:13px;color:#bcd8d6;margin:8px 0 18px}
+.curve .lb{fill:#fff;font-weight:500}
+.tape{background:#05292d;color:#e6f0ef;border-bottom:1px solid #0e5257}
+.tape .wrap{display:flex;align-items:center;flex-wrap:wrap;gap:6px 24px;padding:8px max(5vw,16px)}
+.tape ul{list-style:none;margin:0;padding:0;display:flex;overflow-x:auto;flex:1 1 auto;min-width:0}
+.tape li{flex:none;display:grid;padding:2px 16px;border-left:1px solid #1d4b4f;line-height:1.3}
+.tape li:first-child{border-left:0;padding-left:0}
+.tape .k{font-size:13px;color:#9fc3c0;white-space:nowrap}
+.tape .v{font-size:15px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tape .c{font-size:13px;margin-left:6px}
+.tape .up{color:#7fe0b0}
+.tape .dn{color:#ff9a8a}
+.tape .fl{color:#9fc3c0}
+.tape .src{font-size:13px;color:#9fc3c0;white-space:nowrap}
+.tape .src:hover{color:#fff}
 #ycl{stroke-dasharray:var(--len);stroke-dashoffset:0}
 .drawn #ycl{animation:draw 1.6s ease-out}
 @keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
@@ -178,6 +192,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
     <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="es" aria-pressed="false">ES</button></div>
   </div>
 </nav>
+<div class="tape" id="tape" hidden><div class="wrap"><ul id="tapeList" aria-label="Market data"></ul><a class="src" id="tapeSrc" href="https://data.ecb.europa.eu/"></a></div></div>
 
 <header class="mast" id="top">
   <div class="wrap">
@@ -199,7 +214,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
     <div class="photo"><img src="img/mario-portrait.jpg" alt="Mario Bajo Traver" width="760" height="1140"></div>
     <div class="mk">
       <figure class="curve" id="curve" aria-label="Euro area government yield curve, illustrative"><svg id="yc"></svg></figure>
-      <p class="cap"><span class="E">Euro area government yield curve, illustrative shape by maturity.</span><span class="S">Curva de tipos de la deuda pública de la zona del euro, forma ilustrativa por plazo.</span></p>
+      <p class="cap" id="cap"><span class="E">Euro area government yield curve, illustrative shape by maturity.</span><span class="S">Curva de tipos de la deuda pública de la zona del euro, forma ilustrativa por plazo.</span></p>
       <div class="figs" id="figs"></div>
     </div>
   </div>
@@ -442,22 +457,26 @@ const span=(a,b)=>{const s=Math.floor(a),e=b>2026?TX[L].present:Math.floor(b);re
 const drawTl=()=>{document.getElementById('tl').innerHTML=J.map(([a,b,r,o,bde])=>`<div class="tr"><div class="who"><b>${tr(r)}</b><span>${o}</span></div><div class="track"><div class="bar${bde?' bde':''}${a>2010?' r':''}" style="left:${pc(a)}%;width:${pc(b)-pc(a)}%"><em>${span(a,b)} · ${ten(a,b)}</em></div></div></div>`).join('')};
 document.getElementById('ticks').innerHTML=[1994,2000,2005,2010,2015,2020,2026].map((y,i)=>`<span class="${i%2&&i<6?'o':''}" style="left:${pc(y)}%">${y}</span>`).join('');
 
-const T=[0.25,0.5,1,2,3,5,7,10,15,20,30],Yv=[2.06,2.02,1.97,1.99,2.07,2.29,2.49,2.74,2.98,3.1,3.18];
+let MD=null;
+const T0=[0.25,0.5,1,2,3,5,7,10,15,20,30],Y0=[2.06,2.02,1.97,1.99,2.07,2.29,2.49,2.74,2.98,3.1,3.18];
 const svg=document.getElementById('yc'),fig=document.getElementById('curve');let first=true;
+const realCurve=()=>!!(MD&&MD.curve&&Array.isArray(MD.curve.y)&&MD.curve.y.length===MD.curve.tenors.length);
 const drawCurve=()=>{
   const W=svg.clientWidth,H=svg.clientHeight;if(!W||!H)return;
-  const m={l:2,r:30,t:16,b:28},sx=t=>m.l+(Math.sqrt(t)-Math.sqrt(T[0]))/(Math.sqrt(30)-Math.sqrt(T[0]))*(W-m.l-m.r),lo=1.85,hi=3.3,sy=y=>m.t+(hi-y)/(hi-lo)*(H-m.t-m.b);
-  const P2=T.map((t,i)=>[sx(t),sy(Yv[i])]);
-  let d='M'+P2[0].join(',');
-  for(let i=0;i<P2.length-1;i++){const p0=P2[i-1]||P2[i],p1=P2[i],p2=P2[i+1],p3=P2[i+2]||p2;d+=`C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`}
-  const base=H-m.b,ks=W<520?[2,5,10,30]:[1,2,5,10,30];
+  const real=realCurve(),T=real?MD.curve.tenors:T0,Yv=real?MD.curve.y:Y0,Yp=real&&MD.curve.prev&&MD.curve.prev.y&&MD.curve.prev.y.length===T.length?MD.curve.prev.y:null;
+  const all=Yp?Yv.concat(Yp):Yv;let lo=Math.min(...all),hi=Math.max(...all);const pad=Math.max(.12,(hi-lo)*.15);lo-=pad;hi+=pad;
+  const m={l:2,r:30,t:real?30:16,b:28},sx=t=>m.l+(Math.sqrt(t)-Math.sqrt(T[0]))/(Math.sqrt(T[T.length-1])-Math.sqrt(T[0]))*(W-m.l-m.r),sy=y=>m.t+(hi-y)/(hi-lo)*(H-m.t-m.b);
+  const pts=Y=>T.map((t,i)=>[sx(t),sy(Y[i])]);
+  const path=P2=>{let d='M'+P2[0].join(',');for(let i=0;i<P2.length-1;i++){const p0=P2[i-1]||P2[i],p1=P2[i],p2=P2[i+1],p3=P2[i+2]||p2;d+=`C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`}return d};
+  const P2=pts(Yv),d=path(P2),base=H-m.b,ks=(W<520?[2,5,10,30]:[1,2,5,10,30]).filter(k=>T.includes(k));
   svg.innerHTML=`<defs><linearGradient id="ycg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>`+
   ks.map(k=>`<line x1="${sx(k)}" x2="${sx(k)}" y1="${m.t-6}" y2="${base}" stroke="#4f8f8f" stroke-dasharray="2 4"/><text x="${sx(k)}" y="${base+19}" text-anchor="middle">${k}Y</text>`).join('')+
   `<line x1="${m.l}" x2="${W-m.r}" y1="${base}" y2="${base}" stroke="#6fa9a8"/>`+
   `<path d="${d}L${P2[P2.length-1][0]},${base}L${P2[0][0]},${base}Z" fill="url(#ycg)"/>`+
+  (Yp?`<path d="${path(pts(Yp))}" fill="none" stroke="#9cc9c6" stroke-width="1.5" stroke-dasharray="5 5" opacity=".8"/>`:'')+
   `<path id="ycl" d="${d}" fill="none" stroke="#fff" stroke-width="2.25" stroke-linecap="round"/>`+
-  ks.map(k=>{const i=T.indexOf(k);return `<circle cx="${P2[i][0]}" cy="${P2[i][1]}" r="4" fill="#0b5d63" stroke="#fff" stroke-width="2"/>`}).join('');
-  const ln=document.getElementById('ycl'),L=ln.getTotalLength?ln.getTotalLength():0;ln.style.setProperty('--len',L);
+  ks.map(k=>{const i=T.indexOf(k);return `<circle cx="${P2[i][0]}" cy="${P2[i][1]}" r="4" fill="#0b5d63" stroke="#fff" stroke-width="2"/>`+(real?`<text class="lb" x="${P2[i][0]}" y="${P2[i][1]-12}" text-anchor="${k===30?'end':'middle'}">${Yv[i].toFixed(2)}%</text>`:'')}).join('');
+  const ln=document.getElementById('ycl'),Lg=ln.getTotalLength?ln.getTotalLength():0;ln.style.setProperty('--len',Lg);
   if(first){first=false;fig.classList.add('drawn')}
 };
 const roCurve=new ResizeObserver(drawCurve);roCurve.observe(svg);
@@ -489,16 +508,30 @@ form.addEventListener('submit',async e=>{
 
 const topic=document.getElementById('cf-topic');
 const setTopics=()=>{const i=Math.max(0,topic.selectedIndex);topic.innerHTML=TX[L].topics.map(t=>`<option>${t}</option>`).join('');topic.selectedIndex=i};
+const fd=s=>{try{return new Date(s+'T12:00:00Z').toLocaleDateString(L==='es'?'es-ES':'en-GB',{day:'numeric',month:'short',year:'numeric'})}catch(_){return s}};
+const setCap=()=>{if(!realCurve())return;const c=MD.curve,p=c.prev;document.getElementById('cap').textContent=L==='es'?`Curva cupón cero de la deuda pública AAA de la zona del euro (BCE), ${fd(c.date)}.`+(p?` Línea discontinua: ${fd(p.date)}.`:''):`Euro area AAA government spot curve (ECB), ${fd(c.date)}.`+(p?` Dashed line: ${fd(p.date)}.`:'')};
+const TL={dfr:{en:'ECB deposit rate',es:'Facilidad de depósito BCE'},estr:{en:'€STR',es:'€STR'},aaa2:{en:'AAA 2Y',es:'AAA 2Y'},aaa10:{en:'AAA 10Y',es:'AAA 10Y'},s2s10:{en:'2s10s AAA',es:'Pendiente 2-10 AAA'},spr10:{en:'10Y spread, all vs AAA',es:'Diferencial 10Y, total vs AAA'},eurusd:{en:'EUR/USD',es:'EUR/USD'}};
+const renderTape=()=>{
+  if(!MD||!MD.tape)return;const tp=MD.tape,ids=Object.keys(TL).filter(k=>tp[k]&&isFinite(tp[k].v));if(!ids.length)return;
+  const num=(x,n)=>Number(x).toLocaleString(L==='es'?'es-ES':'en-GB',{minimumFractionDigits:n,maximumFractionDigits:n});
+  document.getElementById('tapeList').innerHTML=ids.map(k=>{const o=tp[k],d=Number(o.d)||0,cl=d>0.05?'up':d<-0.05?'dn':'fl',ar=cl==='up'?'▲':cl==='dn'?'▼':'',sg=d>0?'+':'';
+    const v=o.kind==='fx'?num(o.v,4):o.kind==='bp'?num(o.v,0)+' bp':num(o.v,2)+'%',c=o.kind==='fx'?sg+num(d,2)+'%':sg+num(d,1)+' bp';
+    return `<li><span class="k">${TL[k][L]}</span><span class="v">${v}<span class="c ${cl}">${ar} ${c}</span></span></li>`}).join('');
+  const last=ids.map(k=>tp[k].date).sort().pop();
+  document.getElementById('tapeSrc').textContent=(L==='es'?'Fuente: BCE · datos a ':'Source: ECB · data as of ')+fd(last);
+  document.getElementById('tape').hidden=false;ext();
+};
 const setLang=l=>{
   L=l==='es'?'es':'en';
   const r=document.documentElement;r.dataset.lang=L;r.lang=L;
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===L));
-  show(cur);drawFigs();drawTl();setTopics();st.textContent='';
+  show(cur);drawFigs();drawTl();setTopics();setCap();renderTape();st.textContent='';
   try{localStorage.setItem('mbt-lang',L)}catch(_){}
 };
 document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setLang(b.dataset.set)});
 let saved=null;try{saved=localStorage.getItem('mbt-lang')}catch(_){}
 setLang(saved||((navigator.language||'en').toLowerCase().startsWith('es')?'es':'en'));
+fetch('data/market.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{if(j){MD=j;drawCurve();setCap();renderTape()}}).catch(()=>{});
 }
 </script>
 </body>
