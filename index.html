@@ -81,6 +81,9 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #6fa9a8;color:#fff;text-decoration:none;border-radius:2px;font-size:15px}
 .btn:hover{background:#0e6d74}
+.ico{display:none;width:20px;height:20px;object-fit:contain;flex:none;margin-right:10px;border-radius:3px}
+.ico.ok{display:inline-block}
+.contact dt .ico{width:16px;height:16px;margin-right:8px;vertical-align:-3px}
 .btn.solid{background:#fff;color:var(--deep);border-color:#fff}
 .btn.solid:hover{background:#e4efee}
 .figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid #1f5357}
@@ -251,11 +254,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
       <p class="intro S">Trabajo en renta fija, asignación estratégica y táctica de activos, construcción de carteras y machine learning aplicado a las finanzas, y enseño estas materias en el Máster en Finanzas del Instituto BME.</p>
       <div class="btns">
         <a class="btn solid" href="#research"><span class="E">Research</span><span class="S">Investigación</span></a>
-        <a class="btn" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">SSRN</a>
-        <a class="btn" href="https://orcid.org/0009-0006-3791-2216">ORCID</a>
-        <a class="btn" href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es">Google Scholar</a>
-        <a class="btn" href="https://www.researchgate.net/profile/Mario-Bajo">ResearchGate</a>
-        <a class="btn" href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">LinkedIn</a>
+        <a class="btn" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658"><img class="ico" src="img/icons/ssrn.png" alt="" width="20" height="20">SSRN</a>
+        <a class="btn" href="https://orcid.org/0009-0006-3791-2216"><img class="ico" src="img/icons/orcid.png" alt="" width="20" height="20">ORCID</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es"><img class="ico" src="img/icons/scholar.png" alt="" width="20" height="20">Google Scholar</a>
+        <a class="btn" href="https://www.researchgate.net/profile/Mario-Bajo"><img class="ico" src="img/icons/researchgate.png" alt="" width="20" height="20">ResearchGate</a>
+        <a class="btn" href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24"><img class="ico" src="img/icons/linkedin.png" alt="" width="20" height="20">LinkedIn</a>
       </div>
     </div>
     <div class="photo"><img src="img/mario-portrait.jpg" alt="Mario Bajo Traver" width="760" height="1140"></div>
@@ -459,11 +462,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
     <div>
       <dl>
         <dt><span class="E">Address</span><span class="S">Dirección</span></dt><dd>Banco de España, c/ Alcalá 48, 28014 Madrid, <span class="E">Spain</span><span class="S">España</span></dd>
-        <dt>ORCID</dt><dd><a href="https://orcid.org/0009-0006-3791-2216">0009-0006-3791-2216</a></dd>
-        <dt>SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658"><span class="E">Author page</span><span class="S">Página de autor</span></a></dd>
-        <dt>Google Scholar</dt><dd><a href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es"><span class="E">Citations profile</span><span class="S">Perfil de citas</span></a></dd>
-        <dt>ResearchGate</dt><dd><a href="https://www.researchgate.net/profile/Mario-Bajo">Mario-Bajo</a></dd>
-        <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">mario-bajo-msc-mfia-caiib</a></dd>
+        <dt><img class="ico" src="img/icons/orcid.png" alt="" width="20" height="20">ORCID</dt><dd><a href="https://orcid.org/0009-0006-3791-2216">0009-0006-3791-2216</a></dd>
+        <dt><img class="ico" src="img/icons/ssrn.png" alt="" width="20" height="20">SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658"><span class="E">Author page</span><span class="S">Página de autor</span></a></dd>
+        <dt><img class="ico" src="img/icons/scholar.png" alt="" width="20" height="20">Google Scholar</dt><dd><a href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es"><span class="E">Citations profile</span><span class="S">Perfil de citas</span></a></dd>
+        <dt><img class="ico" src="img/icons/researchgate.png" alt="" width="20" height="20">ResearchGate</dt><dd><a href="https://www.researchgate.net/profile/Mario-Bajo">Mario-Bajo</a></dd>
+        <dt><img class="ico" src="img/icons/linkedin.png" alt="" width="20" height="20">LinkedIn</dt><dd><a href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">mario-bajo-msc-mfia-caiib</a></dd>
       </dl>
       <img src="img/mario-office.jpg" alt="Mario Bajo Traver" width="640" height="857" style="width:min(220px,50%);height:auto;border:1px solid #4f8f8f;margin-top:28px">
     </div>
@@ -595,6 +598,7 @@ svg.addEventListener('pointermove',moveX);svg.addEventListener('pointerdown',mov
 const roCurve=new ResizeObserver(drawCurve);roCurve.observe(svg);
 
 
+document.querySelectorAll('img.ico').forEach(i=>{const ok=()=>{if(i.naturalWidth)i.classList.add('ok')};if(i.complete)ok();else i.addEventListener('load',ok)});
 const TO='e32b7656901ce7dec7e3c25ea4e37f36';
 const form=document.getElementById('cf'),btn=document.getElementById('cf-btn'),st=document.getElementById('cf-status');
 form.addEventListener('submit',async e=>{
