@@ -182,6 +182,10 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .book .cover{aspect-ratio:3/4;max-width:150px;background:var(--teal);color:#fff;padding:16px 14px;font:400 15px/1.25 "Libre Caslon Text",Georgia,serif;margin-bottom:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:4px 4px 0 var(--rule)}
 .book .cover small{font:12px Inter,sans-serif;color:#cfe3e1}
 .tl{border-top:2px solid var(--ink)}
+.sede{margin:clamp(-12px,-1vw,0px) 0 clamp(18px,2.5vw,32px)}
+.sede img{width:100%;height:auto;aspect-ratio:1400/349;object-fit:cover;object-position:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 80%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 80%,transparent 100%);mask-composite:intersect}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .sede{background:#f4f2ec;border-radius:4px;padding:6px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}}
+:root[data-theme=dark] .sede{background:#f4f2ec;border-radius:4px;padding:6px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .axis,.tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:20px;align-items:center}
 .axis{padding:10px 0 6px;font-size:13px;color:var(--mute)}
 .ticks{position:relative;height:18px}
@@ -229,7 +233,7 @@ footer{background:var(--deep);color:#bcd8d6;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(5vw,16px)}
 @media(max-width:900px){.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){.mast>.wrap{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ph"}.photo{min-height:0;aspect-ratio:4/5;max-height:440px;margin-top:24px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
-@media(max-width:600px){.news .wrap{grid-template-columns:minmax(0,1fr)}.news li{grid-template-columns:minmax(0,1fr)}.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #1f5357}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
+@media(max-width:600px){.sede img{aspect-ratio:16/7;object-position:42% 40%}.news .wrap{grid-template-columns:minmax(0,1fr)}.news li{grid-template-columns:minmax(0,1fr)}.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #1f5357}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
 </style>
 </head>
 <body>
@@ -377,6 +381,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
 
 <section class="band alt" id="career">
   <div class="wrap">
+    <figure class="sede"><img src="img/sede-acuarela.jpg" alt="Watercolour of the Banco de España headquarters, Madrid" width="1400" height="349" loading="lazy"></figure>
     <h2><span class="E">Career</span><span class="S">Trayectoria</span></h2>
     <p class="lede"><span class="E">More than thirty years across academia, consulting, private banking and central banking, each position drawn as a maturity on the same time axis.</span><span class="S">Más de treinta años entre la universidad, la consultoría, la banca privada y la banca central, con cada puesto dibujado como un vencimiento sobre el mismo eje temporal.</span></p>
     <div class="tl">
