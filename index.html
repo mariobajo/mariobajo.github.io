@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,8 @@
    PICTURE the portrait in the teal masthead; below, a career timeline drawn at true time scale
    COLOUR white ground, ink #14161a, deep teal #0b5d63 masthead and contact band, rule grey
    TYPE Libre Caslon Text for names and headings, Inter for text and figures
-   LAYOUT laptop: masthead with name, role and figures left, portrait bleeding to the right edge; phone: name, portrait, figures */
+   LAYOUT laptop: name and role left, framed portrait right, then a full-width yield curve and a market-data strip; phone: name, portrait, curve, figures */
+:root[data-lang=es] .E,:root[data-lang=en] .S{display:none!important}
 :root{color-scheme:light dark;--bg:light-dark(#ffffff,#0d1416);--ink:light-dark(#14161a,#e6ecec);--mute:light-dark(#5b6266,#9aa8aa);--rule:light-dark(#d9dddf,#26343a);--soft:light-dark(#f2f5f5,#131d20);--teal:#0b5d63;--tealx:light-dark(#0b5d63,#5fb7bd);--deep:#073d42;--on:#f3f7f6}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
@@ -38,10 +39,11 @@ nav.top .links{display:flex;flex-wrap:wrap;gap:4px 18px}
 nav.top .links a{color:#cfe3e1;text-decoration:none;font-size:15px;padding:6px 0}
 nav.top .links a:hover{color:#fff;text-decoration:underline}
 .mast{background:var(--teal);color:var(--on);overflow:hidden}
-.mast .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch}
-.mast .txt{padding:clamp(40px,6vw,88px) max(5vw,16px) clamp(32px,4vw,56px)}
-.mast h1{font-size:clamp(44px,6.2vw,76px);color:#fff}
-.mast .role{font-size:19px;margin:18px 0 6px;color:#fff}
+.mast .wrap{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);grid-template-areas:"hd ph" "mk mk";column-gap:clamp(28px,4vw,64px);padding:clamp(36px,5vw,64px) max(5vw,16px) clamp(28px,3vw,40px)}
+.mast .hd{grid-area:hd}
+.mast .mk{grid-area:mk;margin-top:clamp(20px,3vw,36px)}
+.mast h1{font-size:clamp(36px,4.4vw,54px);color:#fff}
+.mast .role{font-size:19px;margin:14px 0 6px;color:#fff}
 .mast .inst{color:#cfe3e1;margin:0 0 22px;max-width:52ch}
 .mast .intro{max-width:56ch;margin:0 0 26px;color:#e7f0ef}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
@@ -54,7 +56,7 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .figs div:first-child{border-left:0;padding-left:0}
 .figs span{display:block;font-size:13px;line-height:1.3;color:#cfe3e1}
 .figs b{display:block;margin-top:6px;font:500 clamp(26px,3vw,34px)/1 Inter,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:#fff}
-.curve{position:relative;height:170px;margin:34px 0 0}
+.curve{position:relative;height:clamp(160px,18vw,210px);margin:0}
 .curve svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .curve text{font:13px Inter,sans-serif;fill:#cfe3e1;paint-order:stroke;stroke:#0b5d63;stroke-width:4px}
 .cap{font-size:13px;color:#bcd8d6;margin:8px 0 18px}
@@ -62,8 +64,13 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .drawn #ycl{animation:draw 1.6s ease-out}
 @keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.drawn #ycl{animation:none}}
-.photo{position:relative;background:#0a0a0a}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.photo{grid-area:ph;position:relative;min-height:320px;background:#0a0a0a;border:1px solid #4f8f8f}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+.lang{display:flex;border:1px solid #4f8f8f;border-radius:2px;overflow:hidden}
+.lang button{font:500 14px Inter,sans-serif;min-height:40px;min-width:46px;padding:0 10px;background:transparent;color:#cfe3e1;border:0;cursor:pointer}
+.lang button[aria-pressed=true]{background:#fff;color:#073d42}
+.lang button:hover{color:#fff}
+.lang button[aria-pressed=true]:hover{color:#073d42}
 .about{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
 .about p{margin:0 0 16px;max-width:68ch}
 .fields{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:8px}
@@ -83,7 +90,7 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .screen tbody tr:hover{background:color-mix(in srgb,var(--tealx) 6%,transparent)}
 .screen .y{width:4.5em;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--mute)}
 .screen .ti{font-family:"Libre Caslon Text",Georgia,serif;font-size:17px;line-height:1.35}
-.screen .en{font-size:14px;color:var(--mute);font-style:italic;margin-top:3px}
+.screen .tx{font-size:14px;color:var(--mute);font-style:italic;margin-top:3px}
 .screen .au{font-size:14px;color:var(--mute);margin-top:3px}
 .screen .ve{width:24%}
 .screen .ve i{display:block}
@@ -157,8 +164,8 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 footer{background:var(--deep);color:#bcd8d6;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(5vw,16px)}
 @media(max-width:900px){.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:760px){.mast .wrap{grid-template-columns:minmax(0,1fr)}.photo{order:2;height:min(110vw,520px)}.mast .txt{display:contents}.mast .hd{order:1;padding:40px max(5vw,16px) 28px}.mast .rest{order:3;padding:28px max(5vw,16px) 36px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
-@media(max-width:600px){.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #4f8f8f}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .me{width:100%}.ticks span.o{display:none}}
+@media(max-width:760px){.mast .wrap{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ph" "mk"}.photo{min-height:0;aspect-ratio:4/5;max-height:440px;margin-top:24px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
+@media(max-width:600px){.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #4f8f8f}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
 </style>
 </head>
 <body>
@@ -166,56 +173,73 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
   <div class="wrap">
     <a class="me" href="#top">Mario Bajo Traver</a>
     <div class="links">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#teaching">Teaching</a><a href="#career">Career</a><a href="#contact">Contact</a>
+      <a href="#about"><span class="E">About</span><span class="S">Perfil</span></a><a href="#research"><span class="E">Research</span><span class="S">Investigación</span></a><a href="#teaching"><span class="E">Teaching</span><span class="S">Docencia</span></a><a href="#career"><span class="E">Career</span><span class="S">Trayectoria</span></a><a href="#contact"><span class="E">Contact</span><span class="S">Contacto</span></a>
     </div>
+    <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="es" aria-pressed="false">ES</button></div>
   </div>
 </nav>
 
 <header class="mast" id="top">
   <div class="wrap">
-    <div class="txt">
-      <div class="hd">
-        <h1>Mario Bajo Traver</h1>
-        <p class="role">Head of the Investment Strategies Unit</p>
-        <p class="inst">Department of Market Analysis and Intelligence, DG Operations, Markets and Payment Systems, Banco de España</p>
-      </div>
-      <div class="rest">
-        <p class="intro">I work on fixed income, strategic and tactical asset allocation, portfolio construction and machine learning in finance, and teach these subjects in the Master in Finance at Instituto BME.</p>
-        <div class="btns">
-          <a class="btn solid" href="#research">Research</a>
-          <a class="btn" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">SSRN</a>
-          <a class="btn" href="https://orcid.org/0009-0006-3791-2216">ORCID</a>
-          <a class="btn" href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es">Google Scholar</a>
-          <a class="btn" href="https://www.researchgate.net/profile/Mario-Bajo">ResearchGate</a>
-          <a class="btn" href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">LinkedIn</a>
-        </div>
-        <figure class="curve" id="curve" aria-label="Illustrative euro area government yield curve"><svg id="yc"></svg></figure>
-        <p class="cap">Euro area government yield curve, illustrative shape by maturity.</p>
-        <div class="figs" id="figs"></div>
+    <div class="hd">
+      <h1>Mario Bajo Traver</h1>
+      <p class="role"><span class="E">Head of the Investment Strategies Unit</span><span class="S">Jefe de la Unidad de Estrategias de Inversión</span></p>
+      <p class="inst"><span class="E">Department of Market Analysis and Intelligence, DG Operations, Markets and Payment Systems, Banco de España</span><span class="S">Departamento de Análisis e Inteligencia de Mercados, DG de Operaciones, Mercados y Sistemas de Pago, Banco de España</span></p>
+      <p class="intro E">I work on fixed income, strategic and tactical asset allocation, portfolio construction and machine learning in finance, and teach these subjects in the Master in Finance at Instituto BME.</p>
+      <p class="intro S">Trabajo en renta fija, asignación estratégica y táctica de activos, construcción de carteras y machine learning aplicado a las finanzas, y enseño estas materias en el Máster en Finanzas del Instituto BME.</p>
+      <div class="btns">
+        <a class="btn solid" href="#research"><span class="E">Research</span><span class="S">Investigación</span></a>
+        <a class="btn" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">SSRN</a>
+        <a class="btn" href="https://orcid.org/0009-0006-3791-2216">ORCID</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es">Google Scholar</a>
+        <a class="btn" href="https://www.researchgate.net/profile/Mario-Bajo">ResearchGate</a>
+        <a class="btn" href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">LinkedIn</a>
       </div>
     </div>
-    <div class="photo"><img src="img/mario-portrait.jpg" alt="Portrait of Mario Bajo Traver" width="760" height="1140"></div>
+    <div class="photo"><img src="img/mario-portrait.jpg" alt="Mario Bajo Traver" width="760" height="1140"></div>
+    <div class="mk">
+      <figure class="curve" id="curve" aria-label="Euro area government yield curve, illustrative"><svg id="yc"></svg></figure>
+      <p class="cap"><span class="E">Euro area government yield curve, illustrative shape by maturity.</span><span class="S">Curva de tipos de la deuda pública de la zona del euro, forma ilustrativa por plazo.</span></p>
+      <div class="figs" id="figs"></div>
+    </div>
   </div>
 </header>
 
 <section class="band" id="about">
   <div class="wrap about">
     <div>
-      <h2>About</h2>
+      <h2><span class="E">About</span><span class="S">Perfil</span></h2>
+      <div class="E">
       <p>Mario Bajo Traver is Head of the Investment Strategies Unit (Department of Market Analysis and Intelligence) at Banco de España. He began his career in London as a Lecturer in Economics at London South Bank University, then worked as a consultant at Overlap Consulting and Analistas Financieros Internacionales (AFI) before joining Banco Sabadell in 2001, where he became Director of the Financial Advisory Department in Private Banking.</p>
       <p>In 2007 he became a Senior Portfolio Manager at Banco de España, managing the ECB's USD reserves portfolio and the Bank's own funds portfolio, and in 2014 Head of the Risk Measurement Unit, a position he held until his appointment to his current role in 2025.</p>
       <p>His research focuses on fixed income, asset allocation, portfolio construction and machine learning, and he has published in the Financial Analysts Journal, the Journal of Asset Management, The Journal of Fixed Income and The Journal of Impact and ESG Investing, among others.</p>
-      <ul class="fields" aria-label="Fields of interest">
+      </div>
+      <div class="S">
+      <p>Mario Bajo Traver es Jefe de la Unidad de Estrategias de Inversión (Departamento de Análisis e Inteligencia de Mercados) del Banco de España. Comenzó su carrera en Londres como profesor de Economía en la London South Bank University y después trabajó como consultor en Overlap Consulting y en Analistas Financieros Internacionales (AFI), antes de incorporarse en 2001 a Banco Sabadell, donde fue director del Departamento de Asesoramiento Financiero de Banca Privada.</p>
+      <p>En 2007 se incorporó al Banco de España como gestor sénior de carteras, a cargo de la cartera de reservas en dólares del BCE y de la cartera de recursos propios del Banco, y en 2014 pasó a ser Jefe de la Unidad de Medición de Riesgos, puesto que ocupó hasta su nombramiento en su cargo actual en 2025.</p>
+      <p>Su investigación se centra en la renta fija, la asignación de activos, la construcción de carteras y el machine learning, y ha publicado en Financial Analysts Journal, Journal of Asset Management, The Journal of Fixed Income y The Journal of Impact and ESG Investing, entre otras revistas.</p>
+      </div>
+      <ul class="fields E" aria-label="Fields of interest">
         <li>Strategic and tactical asset allocation</li><li>Fixed income and yield curve strategies</li><li>Portfolio construction and diversification</li><li>Performance evaluation</li><li>Regime-switching models</li><li>Financial risk management</li><li>Sustainable investing</li><li>Machine learning in finance</li>
       </ul>
+      <ul class="fields S" aria-label="Áreas de interés">
+        <li>Asignación estratégica y táctica de activos</li><li>Renta fija y estrategias de curva</li><li>Construcción de carteras y diversificación</li><li>Evaluación de resultados</li><li>Modelos de cambio de régimen</li><li>Gestión de riesgos financieros</li><li>Inversión sostenible</li><li>Machine learning en finanzas</li>
+      </ul>
     </div>
-    <aside class="side" aria-label="Education and certifications">
-      <dl>
+    <aside class="side">
+      <dl class="E">
         <dt>Executive Master, 2015</dt><dd>Financial Risk Management, Instituto BME, Madrid</dd>
         <dt>MSc, 1997</dt><dd>Economics, The London School of Economics and Political Science</dd>
         <dt>Licenciatura, 1994</dt><dd>Economics and Business Administration, Universidad Autónoma de Madrid</dd>
         <dt>Certifications</dt><dd>CAIIB, CFA Society Spain (2022) · MFIA, Instituto BME (2014) · EFA, EFPA (2005)</dd>
         <dt>Languages and tools</dt><dd>Spanish (native), English (proficient) · Python, SQL Server, MATLAB, VBA, LaTeX</dd>
+      </dl>
+      <dl class="S">
+        <dt>Máster ejecutivo, 2015</dt><dd>Gestión de Riesgos Financieros, Instituto BME, Madrid</dd>
+        <dt>MSc, 1997</dt><dd>Economía, The London School of Economics and Political Science</dd>
+        <dt>Licenciatura, 1994</dt><dd>Ciencias Económicas y Empresariales, Universidad Autónoma de Madrid</dd>
+        <dt>Certificaciones</dt><dd>CAIIB, CFA Society Spain (2022) · MFIA, Instituto BME (2014) · EFA, EFPA (2005)</dd>
+        <dt>Idiomas y herramientas</dt><dd>Español (nativo), inglés (avanzado) · Python, SQL Server, MATLAB, VBA, LaTeX</dd>
       </dl>
     </aside>
   </div>
@@ -223,43 +247,49 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
 
 <section class="band alt" id="research">
   <div class="wrap">
-    <h2>Research</h2>
-    <p class="lede">Refereed articles, working papers and other publications. Links go to the published version (DOI) or to the SSRN working paper.</p>
-    <div class="tabs" role="group" aria-label="Filter publications" id="tabs">
-      <button type="button" data-k="all" aria-pressed="true">All</button>
-      <button type="button" data-k="pub" aria-pressed="false">Refereed articles</button>
-      <button type="button" data-k="wp" aria-pressed="false">Working papers</button>
-      <button type="button" data-k="oth" aria-pressed="false">Book and reports</button>
-      <button type="button" data-k="es" aria-pressed="false">In Spanish</button>
+    <h2><span class="E">Research</span><span class="S">Investigación</span></h2>
+    <p class="lede"><span class="E">Refereed articles, working papers and other publications. Links go to the published version (DOI) or to the SSRN working paper.</span><span class="S">Artículos en revistas con evaluación anónima, documentos de trabajo y otras publicaciones. Los enlaces llevan a la versión publicada (DOI) o al documento de trabajo en SSRN.</span></p>
+    <div class="tabs" role="group" aria-label="Filter" id="tabs">
+      <button type="button" data-k="all" aria-pressed="true"><span class="E">All</span><span class="S">Todo</span></button>
+      <button type="button" data-k="pub" aria-pressed="false"><span class="E">Refereed articles</span><span class="S">Artículos en revistas</span></button>
+      <button type="button" data-k="wp" aria-pressed="false"><span class="E">Working papers</span><span class="S">Documentos de trabajo</span></button>
+      <button type="button" data-k="oth" aria-pressed="false"><span class="E">Book and reports</span><span class="S">Libro e informes</span></button>
+      <button type="button" data-k="es" aria-pressed="false"><span class="E">In Spanish</span><span class="S">En español</span></button>
     </div>
-    <div class="scroll"><table class="screen"><thead><tr><th>Year</th><th>Title</th><th>Journal or series</th><th>Status</th><th>Link</th></tr></thead><tbody id="pubs"></tbody></table></div>
+    <div class="scroll"><table class="screen"><thead><tr><th><span class="E">Year</span><span class="S">Año</span></th><th><span class="E">Title</span><span class="S">Título</span></th><th><span class="E">Journal or series</span><span class="S">Revista o serie</span></th><th><span class="E">Status</span><span class="S">Estado</span></th><th><span class="E">Link</span><span class="S">Enlace</span></th></tr></thead><tbody id="pubs"></tbody></table></div>
     <p class="count" id="count"></p>
   </div>
 </section>
 
 <section class="band" id="teaching">
   <div class="wrap">
-    <h2>Teaching</h2>
-    <p class="lede">Master in Finance, Instituto BME (Bolsas y Mercados Españoles), Madrid, since 2012.</p>
+    <h2><span class="E">Teaching</span><span class="S">Docencia</span></h2>
+    <p class="lede"><span class="E">Master in Finance, Instituto BME (Bolsas y Mercados Españoles), Madrid, since 2012.</span><span class="S">Máster en Finanzas, Instituto BME (Bolsas y Mercados Españoles), Madrid, desde 2012.</span></p>
     <div class="courses">
-      <article class="course"><h3>Advanced Fixed Income</h3><p>Yield curve analytics and active bond portfolio management.</p><ul><li>Duration and curve positioning</li><li>Carry, roll-down and butterfly trades</li><li>Principal components of the curve</li></ul></article>
-      <article class="course"><h3>Portfolio Construction</h3><p>From the investment policy to the strategic benchmark.</p><ul><li>Mean-variance and risk-based allocation</li><li>Diversification and regime-based models</li><li>Performance evaluation</li></ul></article>
-      <article class="course"><h3>Machine Learning</h3><p>Quantitative and machine learning methods for investment decisions.</p><ul><li>Clustering and hierarchical allocation</li><li>Regime detection</li><li>Python case studies</li></ul></article>
+      <article class="course"><h3><span class="E">Advanced Fixed Income</span><span class="S">Renta fija avanzada</span></h3><p class="E">Yield curve analytics and active bond portfolio management.</p><p class="S">Análisis de la curva de tipos y gestión activa de carteras de bonos.</p><ul class="E"><li>Duration and curve positioning</li><li>Carry, roll-down and butterfly trades</li><li>Principal components of the curve</li></ul><ul class="S"><li>Duración y posicionamiento en la curva</li><li>Estrategias de carry, roll-down y butterfly</li><li>Componentes principales de la curva</li></ul></article>
+      <article class="course"><h3><span class="E">Portfolio Construction</span><span class="S">Construcción de carteras</span></h3><p class="E">From the investment policy to the strategic benchmark.</p><p class="S">De la política de inversión a la cartera de referencia estratégica.</p><ul class="E"><li>Mean-variance and risk-based allocation</li><li>Diversification and regime-based models</li><li>Performance evaluation</li></ul><ul class="S"><li>Asignación media-varianza y basada en riesgo</li><li>Diversificación y modelos de regímenes</li><li>Evaluación de resultados</li></ul></article>
+      <article class="course"><h3>Machine Learning</h3><p class="E">Quantitative and machine learning methods for investment decisions.</p><p class="S">Métodos cuantitativos y de machine learning para decisiones de inversión.</p><ul class="E"><li>Clustering and hierarchical allocation</li><li>Regime detection</li><li>Python case studies</li></ul><ul class="S"><li>Clustering y asignación jerárquica</li><li>Detección de regímenes</li><li>Casos prácticos en Python</li></ul></article>
     </div>
     <div class="teach">
       <div>
-        <h3 style="margin-bottom:12px">Teaching history</h3>
-        <ul class="rows">
+        <h3 style="margin-bottom:12px"><span class="E">Teaching history</span><span class="S">Trayectoria docente</span></h3>
+        <ul class="rows E">
           <li><span class="yr">2012 – present</span><span>Advanced Fixed Income, Portfolio Construction and Machine Learning, Master in Finance, Instituto BME, Madrid</span></li>
           <li><span class="yr">2010 – 2012</span><span>Lecturer in Finance, Escuela de Finanzas Aplicadas (EFA, Grupo AFI), Madrid</span></li>
           <li><span class="yr">1998 – 2000</span><span>Master in Banking and Finance (Escuela de Finanzas Aplicadas) and Master in Banking Economics (Universidad de Murcia)</span></li>
           <li><span class="yr">1994 – 1997</span><span>Macroeconomics and Spanish Economy, undergraduate and master level, London South Bank University</span></li>
         </ul>
+        <ul class="rows S">
+          <li><span class="yr">2012 – actualidad</span><span>Renta fija avanzada, Construcción de carteras y Machine learning, Máster en Finanzas, Instituto BME, Madrid</span></li>
+          <li><span class="yr">2010 – 2012</span><span>Profesor de Finanzas, Escuela de Finanzas Aplicadas (EFA, Grupo AFI), Madrid</span></li>
+          <li><span class="yr">1998 – 2000</span><span>Máster en Banca y Finanzas (Escuela de Finanzas Aplicadas) y Máster en Economía Bancaria (Universidad de Murcia)</span></li>
+          <li><span class="yr">1994 – 1997</span><span>Macroeconomía y Economía Española, grado y máster, London South Bank University</span></li>
+        </ul>
       </div>
       <div class="book">
         <div class="cover" aria-hidden="true">Gestión activa de carteras de renta fija<small>Bajo &amp; Rodríguez · BME</small></div>
         <h3>Gestión activa de carteras de renta fija: un enfoque práctico</h3>
-        <p style="margin:8px 0 0;color:var(--mute);font-size:15px">With E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. A practical companion to the fixed income course.</p>
+        <p style="margin:8px 0 0;color:var(--mute);font-size:15px"><span class="E">With E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. A practical companion to the fixed income course.</span><span class="S">Con E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. Complemento práctico del curso de renta fija.</span></p>
       </div>
     </div>
   </div>
@@ -267,13 +297,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
 
 <section class="band alt" id="career">
   <div class="wrap">
-    <h2>Career</h2>
-    <p class="lede">More than thirty years across academia, consulting, private banking and central banking, each position drawn as a maturity on the same time axis.</p>
+    <h2><span class="E">Career</span><span class="S">Trayectoria</span></h2>
+    <p class="lede"><span class="E">More than thirty years across academia, consulting, private banking and central banking, each position drawn as a maturity on the same time axis.</span><span class="S">Más de treinta años entre la universidad, la consultoría, la banca privada y la banca central, con cada puesto dibujado como un vencimiento sobre el mismo eje temporal.</span></p>
     <div class="tl">
-      <div class="axis"><span class="lab">Position</span><div class="ticks" id="ticks"></div></div>
+      <div class="axis"><span class="lab"><span class="E">Position</span><span class="S">Puesto</span></span><div class="ticks" id="ticks"></div></div>
       <div id="tl"></div>
     </div>
-    <div class="cols3">
+    <div class="cols3 E">
       <div><h3>Working groups</h3><ul>
         <li>CGFS (BIS) Working Group on Market-Making and Proprietary Trading<span>Representative of Banco de España, 2013–2014. CGFS Papers No. 52</span></li>
         <li>ECB working group on structured finance<span>Asset-backed securities and covered bonds, 2014</span></li>
@@ -288,35 +318,51 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
         <li>Portfolio management<span>ECB USD reserves and Banco de España own funds (EUR)</span></li>
       </ul></div>
     </div>
+    <div class="cols3 S">
+      <div><h3>Grupos de trabajo</h3><ul>
+        <li>Grupo de trabajo del CGFS (BPI) sobre creación de mercado y negociación por cuenta propia<span>Representante del Banco de España, 2013–2014. CGFS Papers n.º 52</span></li>
+        <li>Grupo de trabajo del BCE sobre financiación estructurada<span>Bonos de titulización y cédulas hipotecarias, 2014</span></li>
+        <li>Grupos del Eurosistema sobre riesgo financiero y gestión de reservas<span>Incluidos el WGFRA y el ECB FX and Bond Market Contact Group</span></li>
+      </ul></div>
+      <div><h3>Actividad editorial</h3><ul>
+        <li>Evaluador<span>Journal of Asset Management</span></li>
+      </ul></div>
+      <div><h3>Responsabilidades de gestión</h3><ul>
+        <li>Política de inversión y marco de riesgos<span>Carteras de recursos propios, reservas internacionales y política monetaria</span></li>
+        <li>Asignación estratégica de activos<span>Incluida la distribución por divisas de las reservas</span></li>
+        <li>Gestión de carteras<span>Reservas en dólares del BCE y recursos propios del Banco de España (EUR)</span></li>
+      </ul></div>
+    </div>
   </div>
 </section>
 
 <section class="band contact" id="contact">
   <div class="wrap">
     <div>
-      <h2>Contact</h2>
-      <p>For research collaboration, refereeing, courses, or speaking invitations, please send a message using the form below. I will reply by e-mail.</p>
+      <h2><span class="E">Contact</span><span class="S">Contacto</span></h2>
+      <p class="E">For research collaboration, refereeing, courses, or speaking invitations, please send a message using the form below. I will reply by e-mail.</p>
+      <p class="S">Para colaboraciones de investigación, evaluación de artículos, cursos o invitaciones como ponente, envíeme un mensaje con este formulario. Le responderé por correo electrónico.</p>
       <form id="cf" class="cf" novalidate>
         <div class="row2">
-          <label for="cf-name">Name<input id="cf-name" name="name" type="text" autocomplete="name" required></label>
-          <label for="cf-email">E-mail<input id="cf-email" name="email" type="email" autocomplete="email" required></label>
+          <label for="cf-name"><span><span class="E">Name</span><span class="S">Nombre</span></span><input id="cf-name" name="name" type="text" autocomplete="name" required></label>
+          <label for="cf-email"><span><span class="E">E-mail</span><span class="S">Correo electrónico</span></span><input id="cf-email" name="email" type="email" autocomplete="email" required></label>
         </div>
         <div class="row2">
-          <label for="cf-org"><span>Institution <span class="opt">(optional)</span></span><input id="cf-org" name="institution" type="text" autocomplete="organization"></label>
-          <label for="cf-topic">Topic<select id="cf-topic" name="topic"><option>Research collaboration</option><option>Courses and teaching</option><option>Speaking invitation</option><option>Refereeing or editorial</option><option>Other</option></select></label>
+          <label for="cf-org"><span><span class="E">Institution <span class="opt">(optional)</span></span><span class="S">Institución <span class="opt">(opcional)</span></span></span><input id="cf-org" name="institution" type="text" autocomplete="organization"></label>
+          <label for="cf-topic"><span><span class="E">Topic</span><span class="S">Tema</span></span><select id="cf-topic" name="topic"></select></label>
         </div>
-        <label for="cf-msg">Message<textarea id="cf-msg" name="message" rows="5" required></textarea></label>
+        <label for="cf-msg"><span><span class="E">Message</span><span class="S">Mensaje</span></span><textarea id="cf-msg" name="message" rows="5" required></textarea></label>
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label class="chk" for="cf-ok"><input id="cf-ok" type="checkbox" required><span>I agree that my details are used only to reply to this message.</span></label>
-        <div class="send"><button type="submit" id="cf-btn">Send message</button><p id="cf-status" role="status" aria-live="polite"></p></div>
+        <label class="chk" for="cf-ok"><input id="cf-ok" type="checkbox" required><span><span class="E">I agree that my details are used only to reply to this message.</span><span class="S">Acepto que mis datos se utilicen solo para responder a este mensaje.</span></span></label>
+        <div class="send"><button type="submit" id="cf-btn"><span class="E">Send message</span><span class="S">Enviar mensaje</span></button><p id="cf-status" role="status" aria-live="polite"></p></div>
       </form>
     </div>
     <div>
       <dl>
-        <dt>Address</dt><dd>Banco de España, c/ Alcalá 48, 28014 Madrid, Spain</dd>
+        <dt><span class="E">Address</span><span class="S">Dirección</span></dt><dd>Banco de España, c/ Alcalá 48, 28014 Madrid, <span class="E">Spain</span><span class="S">España</span></dd>
         <dt>ORCID</dt><dd><a href="https://orcid.org/0009-0006-3791-2216">0009-0006-3791-2216</a></dd>
-        <dt>SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">Author page</a></dd>
-        <dt>Google Scholar</dt><dd><a href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es">Citations profile</a></dd>
+        <dt>SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658"><span class="E">Author page</span><span class="S">Página de autor</span></a></dd>
+        <dt>Google Scholar</dt><dd><a href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es"><span class="E">Citations profile</span><span class="S">Perfil de citas</span></a></dd>
         <dt>ResearchGate</dt><dd><a href="https://www.researchgate.net/profile/Mario-Bajo">Mario-Bajo</a></dd>
         <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">mario-bajo-msc-mfia-caiib</a></dd>
       </dl>
@@ -325,7 +371,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
   </div>
 </section>
 
-<footer><div class="wrap"><span>© 2026 Mario Bajo Traver</span><span>Views expressed in the research listed here are the author's and do not necessarily reflect those of Banco de España or the Eurosystem.</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Mario Bajo Traver</span><span><span class="E">Views expressed in the research listed here are the author's and do not necessarily reflect those of Banco de España or the Eurosystem.</span><span class="S">Las opiniones expresadas en los trabajos aquí recogidos son del autor y no reflejan necesariamente las del Banco de España ni las del Eurosistema.</span></span></div></footer>
 
 <script>
 {
@@ -343,9 +389,9 @@ const P=[
 {k:'wp',y:'2026',st:'Under review',w:'A. Rodríguez Domínguez',t:'The Sharpe Stability Ratio: Temporal Consistency of Risk-Adjusted Performance',v:'SSRN WP 6344658',n:'Journal of Asset Management',l:[ssrn(6344658)]},
 {k:'wp',y:'2026',st:'Under review',t:'The Market Sets the Yardstick: A State-Contingent Standard for Evaluating Institutional Portfolios',v:'SSRN WP 7408778',n:'The Journal of Investing',l:[ssrn(7408778)]},
 {k:'wp',y:'2026',t:'The Capital-Risk Diversification Frontier',v:'SSRN WP 7685685',l:[ssrn(7685685)]},
-{k:'wp',y:'2022',w:'E. Rodríguez Alfonso',t:'Integrating the Carbon Footprint into the Construction of Corporate Bond Portfolios',v:'Banco de España Working Paper No. 2226; also SUERF Policy Brief No. 427',x:'Published in the Financial Analysts Journal (2023)',l:[]},
+{k:'wp',y:'2022',w:'E. Rodríguez Alfonso',t:'Integrating the Carbon Footprint into the Construction of Corporate Bond Portfolios',v:{en:'Banco de España Working Paper No. 2226; also SUERF Policy Brief No. 427',es:'Documento de Trabajo del Banco de España n.º 2226; también SUERF Policy Brief n.º 427'},x:{en:'Published in the Financial Analysts Journal (2023)',es:'Publicado en el Financial Analysts Journal (2023)'},l:[]},
 {k:'oth',y:'2014',w:'E. Rodríguez',st:'Book',t:'Gestión activa de carteras de renta fija: un enfoque práctico',e:'Active Management of Fixed Income Portfolios: A Practical Approach',v:'Colección Estudios & Investigación, BME, Madrid',x:'ISBN 978-84-616-7388-9',l:[]},
-{k:'oth',y:'2014',st:'Report',t:'Market-Making and Proprietary Trading: Industry Trends, Drivers and Policy Implications',v:'CGFS Papers No. 52, Bank for International Settlements',x:'Member of the working group representing Banco de España',l:[]},
+{k:'oth',y:'2014',st:'Report',t:'Market-Making and Proprietary Trading: Industry Trends, Drivers and Policy Implications',v:'CGFS Papers No. 52, Bank for International Settlements',x:{en:'Member of the working group representing Banco de España',es:'Miembro del grupo de trabajo en representación del Banco de España'},l:[]},
 {k:'es',y:'2014',w:'A. Díez-Caballero Pascual',t:'Aplicaciones prácticas del Análisis de Componentes Principales en Gestión de Carteras de Renta Fija (III): Estrategias de valor relativo mediante el ACP: PCA butterflies',e:'Relative Value Strategies and PCA Butterflies',v:'Análisis Financiero',x:'126, 106–125',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=5085724']]},
 {k:'es',y:'2014',t:'Aplicaciones prácticas del ACP en Gestión de Carteras de Renta Fija (II): Gestión del riesgo de tipo de interés de una cartera mediante PCA',e:'Managing the Interest Rate Risk of a Portfolio with PCA',v:'Análisis Financiero',x:'124, 39–54',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=4740708']]},
 {k:'es',y:'2014',t:'Aplicaciones prácticas del ACP en Gestión de Carteras de Renta Fija (I): Determinación de los principales factores de riesgo de la curva de rendimientos',e:'Determination of the Main Risk Factors of the Yield Curve',v:'Análisis Financiero',x:'124, 20–36',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=4740714']]},
@@ -356,32 +402,44 @@ const P=[
 {k:'es',y:'2000',w:'A. Berges',t:'La riqueza financiera de las familias: nuevos enfoques de gestión',e:'The Financial Wealth of Families: New Management Approaches',v:'Economistas',x:'84, 164–171',l:[['Dialnet','https://dialnet.unirioja.es/servlet/articulo?codigo=93835']]}
 ];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const label={all:'publications',pub:'refereed articles',wp:'working papers',oth:'book and reports',es:'publications in Spanish'};
+let L='en',cur='all';
+const ext=()=>document.querySelectorAll('a[href^="http"]').forEach(a=>{if(a.host!==location.host){a.target='_blank';a.rel='noopener noreferrer'}});
+const tr=o=>o&&typeof o==='object'?o[L]:o;
+const TX={
+ en:{all:'publications',pub:'refereed articles',wp:'working papers',oth:'book and reports',es:'publications in Spanish',with:'With',sub:'Submitted to',present:'present',
+     st:{'Published':'Published','Forthcoming':'Forthcoming','Revise and resubmit':'R&R','Under review':'Under review','Working paper':'Working paper','Book':'Book','Report':'Report'},rr:'Revise and resubmit',
+     figs:['Refereed articles','Working papers','Years in markets','Years teaching'],
+     topics:['Research collaboration','Courses and teaching','Speaking invitation','Refereeing or editorial','Other'],
+     fill:'Please complete the highlighted fields.',sending:'Sending...',ok:'Thank you. Your message has been sent and I will reply by e-mail.',err:'The message could not be sent right now. Please try again later or contact me through LinkedIn.'},
+ es:{all:'publicaciones',pub:'artículos en revistas',wp:'documentos de trabajo',oth:'libro e informes',es:'publicaciones en español',with:'Con',sub:'Enviado a',present:'actualidad',
+     st:{'Published':'Publicado','Forthcoming':'En prensa','Revise and resubmit':'R&R','Under review':'En revisión','Working paper':'Documento de trabajo','Book':'Libro','Report':'Informe'},rr:'Revisión solicitada (revise and resubmit)',
+     figs:['Artículos en revistas','Documentos de trabajo','Años en mercados','Años de docencia'],
+     topics:['Colaboración en investigación','Cursos y docencia','Invitación como ponente','Evaluación o labor editorial','Otro'],
+     fill:'Complete los campos marcados.',sending:'Enviando...',ok:'Gracias. Su mensaje se ha enviado y le responderé por correo electrónico.',err:'No se ha podido enviar el mensaje. Inténtelo más tarde o contácteme a través de LinkedIn.'}};
 const list=document.getElementById('pubs'),count=document.getElementById('count');
 const SC={'Published':'s-pub','Forthcoming':'s-fwd','Revise and resubmit':'s-rr','Under review':'s-ur','Working paper':'s-wp','Book':'s-bk','Report':'s-bk'};
 const stOf=p=>p.st||(p.k==='wp'?'Working paper':'Published');
-const item=p=>{const s=stOf(p);return `<tr><td class="y">${esc(p.y)}</td><td class="t"><div class="ti">${esc(p.t)}</div>${p.e?`<div class="en">${esc(p.e)}</div>`:''}${p.w?`<div class="au">With ${esc(p.w)}</div>`:''}</td><td class="ve"><i>${esc(p.v)}</i>${p.x?`<small>${esc(p.x)}</small>`:''}${p.n?`<small>Submitted to ${esc(p.n)}</small>`:''}</td><td class="s"><span class="st ${SC[s]}"${s==='Revise and resubmit'?' title="Revise and resubmit"':''}>${s==='Revise and resubmit'?'R&amp;R':esc(s)}</span></td><td class="l">${p.l.map(([a,u])=>`<a href="${esc(u)}">${esc(a)}</a>`).join('')}</td></tr>`};
-const show=k=>{const r=P.filter(p=>k==='all'||p.k===k);list.innerHTML=r.map(item).join('');count.textContent=r.length+' '+label[k];document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k))};
+const item=p=>{const s=stOf(p),X=TX[L];return `<tr><td class="y">${esc(p.y)}</td><td class="t"><div class="ti">${esc(p.t)}</div>${p.e&&L==='en'?`<div class="tx">${esc(p.e)}</div>`:''}${p.w?`<div class="au">${X.with} ${esc(p.w)}</div>`:''}</td><td class="ve"><i>${esc(tr(p.v))}</i>${p.x?`<small>${esc(tr(p.x))}</small>`:''}${p.n?`<small>${X.sub} ${esc(p.n)}</small>`:''}</td><td class="s"><span class="st ${SC[s]}"${s==='Revise and resubmit'?` title="${X.rr}"`:''}>${esc(X.st[s])}</span></td><td class="l">${p.l.map(([a,u])=>`<a href="${esc(u)}">${esc(a)}</a>`).join('')}</td></tr>`};
+const show=k=>{cur=k;const r=P.filter(p=>k==='all'||p.k===k);list.innerHTML=r.map(item).join('');count.textContent=r.length+' '+TX[L][k];document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));ext()};
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(b.dataset.k)});
-show('all');
 
 const yrsSince=2026-1994;
-document.getElementById('figs').innerHTML=[[P.filter(p=>p.k==='pub').length,'Refereed articles'],[P.filter(p=>p.k==='wp').length,'Working papers'],[yrsSince,'Years in markets'],[2026-2012,'Years teaching']].map(([n,t])=>`<div><span>${t}</span><b>${n}</b></div>`).join('');
+const drawFigs=()=>{document.getElementById('figs').innerHTML=[P.filter(p=>p.k==='pub').length,P.filter(p=>p.k==='wp').length,yrsSince,2026-2012].map((n,i)=>`<div><span>${TX[L].figs[i]}</span><b>${n}</b></div>`).join('')};
 
 const A=1994,B=2026.9,pc=y=>((y-A)/(B-A)*100).toFixed(2);
 const J=[
-[2025.45,2026.9,'Head of the Investment Strategies Unit','Banco de España',1],
-[2014.4,2025.45,'Head of the Risk Measurement Unit','Banco de España',1],
-[2014,2014.4,'Senior Financial Risk Manager','Banco de España',1],
-[2007,2014,'Senior Portfolio Manager','Banco de España',1],
-[2001,2007,'Director, Financial Advisory, Private Banking','Banco Sabadell',0],
-[2000,2001,'Senior Economist','finanzas.com, Ya.com (T-Online Group)',0],
-[1998,2000,'Senior Consultant, Banking Department','Analistas Financieros Internacionales',0],
-[1997,1998,'Consultant, Banking and Finance','Overlap Consulting',0],
-[1994,1997,'Lecturer in Economics','London South Bank University',0]];
+[2025.45,2026.9,{en:'Head of the Investment Strategies Unit',es:'Jefe de la Unidad de Estrategias de Inversión'},'Banco de España',1],
+[2014.4,2025.45,{en:'Head of the Risk Measurement Unit',es:'Jefe de la Unidad de Medición de Riesgos'},'Banco de España',1],
+[2014,2014.4,{en:'Senior Financial Risk Manager',es:'Gestor sénior de riesgos financieros'},'Banco de España',1],
+[2007,2014,{en:'Senior Portfolio Manager',es:'Gestor sénior de carteras'},'Banco de España',1],
+[2001,2007,{en:'Director, Financial Advisory, Private Banking',es:'Director, Asesoramiento Financiero, Banca Privada'},'Banco Sabadell',0],
+[2000,2001,{en:'Senior Economist',es:'Economista sénior'},'finanzas.com, Ya.com (T-Online Group)',0],
+[1998,2000,{en:'Senior Consultant, Banking Department',es:'Consultor sénior, Departamento de Banca'},'Analistas Financieros Internacionales',0],
+[1997,1998,{en:'Consultant, Banking and Finance',es:'Consultor, Banca y Finanzas'},'Overlap Consulting',0],
+[1994,1997,{en:'Lecturer in Economics',es:'Profesor de Economía'},'London South Bank University',0]];
 const ten=(a,b)=>{const d=b-a;return d<1?Math.round(d*12)+'M':Math.round(d)+'Y'};
-const span=(a,b)=>{const s=Math.floor(a),e=b>2026?'present':Math.floor(b);return s===e?String(s):s+'–'+e};
-document.getElementById('tl').innerHTML=J.map(([a,b,r,o,bde])=>`<div class="tr"><div class="who"><b>${r}</b><span>${o}</span></div><div class="track"><div class="bar${bde?' bde':''}${a>2010?' r':''}" style="left:${pc(a)}%;width:${pc(b)-pc(a)}%"><em>${span(a,b)} · ${ten(a,b)}</em></div></div></div>`).join('');
+const span=(a,b)=>{const s=Math.floor(a),e=b>2026?TX[L].present:Math.floor(b);return s===e?String(s):s+'–'+e};
+const drawTl=()=>{document.getElementById('tl').innerHTML=J.map(([a,b,r,o,bde])=>`<div class="tr"><div class="who"><b>${tr(r)}</b><span>${o}</span></div><div class="track"><div class="bar${bde?' bde':''}${a>2010?' r':''}" style="left:${pc(a)}%;width:${pc(b)-pc(a)}%"><em>${span(a,b)} · ${ten(a,b)}</em></div></div></div>`).join('')};
 document.getElementById('ticks').innerHTML=[1994,2000,2005,2010,2015,2020,2026].map((y,i)=>`<span class="${i%2&&i<6?'o':''}" style="left:${pc(y)}%">${y}</span>`).join('');
 
 const T=[0.25,0.5,1,2,3,5,7,10,15,20,30],Yv=[2.06,2.02,1.97,1.99,2.07,2.29,2.49,2.74,2.98,3.1,3.18];
@@ -404,9 +462,6 @@ const drawCurve=()=>{
 };
 const roCurve=new ResizeObserver(drawCurve);roCurve.observe(svg);
 
-const ext=()=>document.querySelectorAll('a[href^="http"]').forEach(a=>{if(a.host!==location.host){a.target='_blank';a.rel='noopener noreferrer'}});
-ext();
-document.getElementById('tabs').addEventListener('click',ext);
 
 const TO='mariobajo@gmail.com';
 const form=document.getElementById('cf'),btn=document.getElementById('cf-btn'),st=document.getElementById('cf-status');
@@ -415,22 +470,35 @@ form.addEventListener('submit',async e=>{
   const req=[...form.querySelectorAll('[required]')];
   let ok=true;
   req.forEach(f=>{const bad=f.type==='checkbox'?!f.checked:!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value));f.classList.toggle('bad',bad);if(bad)ok=false});
-  if(!ok){st.textContent='Please complete the highlighted fields.';return}
+  if(!ok){st.textContent=TX[L].fill;return}
   if(form._honey.value)return;
   const d=Object.fromEntries(new FormData(form));
   delete d._honey;
   d._subject='Web contact: '+d.topic+' ('+d.name+')';
   d._replyto=d.email;
   d._template='table';
-  btn.disabled=true;st.textContent='Sending...';
+  btn.disabled=true;st.textContent=TX[L].sending;
   try{
     const r=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)});
     const j=await r.json().catch(()=>({}));
     if(!r.ok||j.success==='false'||j.success===false)throw new Error(j.message||'send failed');
-    form.reset();st.textContent='Thank you. Your message has been sent and I will reply by e-mail.';
-  }catch(_){st.textContent='The message could not be sent right now. Please try again later or contact me through LinkedIn.'}
+    form.reset();setTopics();st.textContent=TX[L].ok;
+  }catch(_){st.textContent=TX[L].err}
   btn.disabled=false;
 });
+
+const topic=document.getElementById('cf-topic');
+const setTopics=()=>{const i=Math.max(0,topic.selectedIndex);topic.innerHTML=TX[L].topics.map(t=>`<option>${t}</option>`).join('');topic.selectedIndex=i};
+const setLang=l=>{
+  L=l==='es'?'es':'en';
+  const r=document.documentElement;r.dataset.lang=L;r.lang=L;
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===L));
+  show(cur);drawFigs();drawTl();setTopics();st.textContent='';
+  try{localStorage.setItem('mbt-lang',L)}catch(_){}
+};
+document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setLang(b.dataset.set)});
+let saved=null;try{saved=localStorage.getItem('mbt-lang')}catch(_){}
+setLang(saved||((navigator.language||'en').toLowerCase().startsWith('es')?'es':'en'));
 }
 </script>
 </body>
