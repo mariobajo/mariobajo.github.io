@@ -118,12 +118,27 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .contact dt{font-size:13px;color:#bcd8d6;padding-top:14px}
 .contact dd{margin:2px 0 0;padding-bottom:14px;border-bottom:1px solid #4f8f8f;overflow-wrap:anywhere}
 .contact a{color:#fff}
-.copy{font:500 14px Inter,sans-serif;min-height:36px;padding:0 12px;margin-left:10px;border:1px solid #6fa9a8;background:transparent;color:#fff;border-radius:2px;cursor:pointer;vertical-align:middle}
+.cf{display:grid;gap:14px;margin-top:24px}
+.cf .row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.cf label{display:grid;gap:6px;font-size:14px;color:#e2eeed}
+.cf .opt{color:#bcd8d6}
+.cf input,.cf select,.cf textarea{font:16px Inter,sans-serif;width:100%;min-height:44px;padding:10px 12px;border:1px solid #6fa9a8;border-radius:2px;background:#fff;color:#14161a}
+.cf textarea{resize:vertical;min-height:130px}
+.cf input:focus-visible,.cf select:focus-visible,.cf textarea:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.cf .bad{border-color:#ffb4a8;box-shadow:0 0 0 2px #ffb4a8}
+.cf .chk{display:flex;gap:10px;align-items:flex-start}
+.cf .chk input{width:20px;min-height:20px;height:20px;margin:2px 0 0;flex:none;accent-color:#0b5d63}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.send{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.send button{font:500 16px Inter,sans-serif;min-height:46px;padding:0 24px;border:1px solid #fff;background:#fff;color:#073d42;border-radius:2px;cursor:pointer}
+.send button:hover{background:#e4efee}
+.send button:disabled{opacity:.6;cursor:wait}
+.send p{margin:0;font-size:15px;color:#fff;max-width:40ch}
 footer{background:var(--deep);color:#bcd8d6;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(5vw,16px)}
 @media(max-width:900px){.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){.mast .wrap{grid-template-columns:minmax(0,1fr)}.photo{order:2;height:min(110vw,520px)}.mast .txt{display:contents}.mast .hd{order:1;padding:40px max(5vw,16px) 28px}.mast .rest{order:3;padding:28px max(5vw,16px) 36px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
-@media(max-width:600px){.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.pubs li,.rows li{grid-template-columns:minmax(0,1fr)}nav.top .me{width:100%}.ticks span.o{display:none}}
+@media(max-width:600px){.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.pubs li,.rows li{grid-template-columns:minmax(0,1fr)}nav.top .me{width:100%}.ticks span.o{display:none}}
 </style>
 </head>
 <body>
@@ -150,6 +165,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
           <a class="btn solid" href="#research">Research</a>
           <a class="btn" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">SSRN</a>
           <a class="btn" href="https://orcid.org/0009-0006-3791-2216">ORCID</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es">Google Scholar</a>
+          <a class="btn" href="https://www.researchgate.net/profile/Mario-Bajo">ResearchGate</a>
           <a class="btn" href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">LinkedIn</a>
         </div>
         <div class="figs" id="figs"></div>
@@ -256,16 +273,33 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
   <div class="wrap">
     <div>
       <h2>Contact</h2>
-      <p>For research collaboration, refereeing, teaching or speaking invitations, please write by e-mail.</p>
-      <p style="margin-top:24px"><img src="img/mario-office.jpg" alt="Mario Bajo Traver" width="640" height="857" style="width:min(220px,50%);height:auto;border:1px solid #4f8f8f"></p>
+      <p>For research collaboration, refereeing, courses, or speaking invitations, please send a message using the form below. I will reply by e-mail.</p>
+      <form id="cf" class="cf" novalidate>
+        <div class="row2">
+          <label for="cf-name">Name<input id="cf-name" name="name" type="text" autocomplete="name" required></label>
+          <label for="cf-email">E-mail<input id="cf-email" name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <div class="row2">
+          <label for="cf-org"><span>Institution <span class="opt">(optional)</span></span><input id="cf-org" name="institution" type="text" autocomplete="organization"></label>
+          <label for="cf-topic">Topic<select id="cf-topic" name="topic"><option>Research collaboration</option><option>Courses and teaching</option><option>Speaking invitation</option><option>Refereeing or editorial</option><option>Other</option></select></label>
+        </div>
+        <label for="cf-msg">Message<textarea id="cf-msg" name="message" rows="5" required></textarea></label>
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="chk" for="cf-ok"><input id="cf-ok" type="checkbox" required><span>I agree that my details are used only to reply to this message.</span></label>
+        <div class="send"><button type="submit" id="cf-btn">Send message</button><p id="cf-status" role="status" aria-live="polite"></p></div>
+      </form>
     </div>
-    <dl>
-      <dt>E-mail</dt><dd><a href="mailto:mario.bajo@bde.es">mario.bajo@bde.es</a><button class="copy" type="button" id="copy">Copy</button></dd>
-      <dt>Address</dt><dd>Banco de España, c/ Alcalá 48, 28014 Madrid, Spain</dd>
-      <dt>ORCID</dt><dd><a href="https://orcid.org/0009-0006-3791-2216">0009-0006-3791-2216</a></dd>
-      <dt>SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">Author page</a></dd>
-      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">mario-bajo-msc-mfia-caiib</a></dd>
-    </dl>
+    <div>
+      <dl>
+        <dt>Address</dt><dd>Banco de España, c/ Alcalá 48, 28014 Madrid, Spain</dd>
+        <dt>ORCID</dt><dd><a href="https://orcid.org/0009-0006-3791-2216">0009-0006-3791-2216</a></dd>
+        <dt>SSRN</dt><dd><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3429658">Author page</a></dd>
+        <dt>Google Scholar</dt><dd><a href="https://scholar.google.com/citations?user=LMaExzMAAAAJ&amp;hl=es">Citations profile</a></dd>
+        <dt>ResearchGate</dt><dd><a href="https://www.researchgate.net/profile/Mario-Bajo">Mario-Bajo</a></dd>
+        <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/mario-bajo-msc-mfia-caiib-82b8b24">mario-bajo-msc-mfia-caiib</a></dd>
+      </dl>
+      <img src="img/mario-office.jpg" alt="Mario Bajo Traver" width="640" height="857" style="width:min(220px,50%);height:auto;border:1px solid #4f8f8f;margin-top:28px">
+    </div>
   </div>
 </section>
 
@@ -325,7 +359,33 @@ const span=(a,b)=>{const s=Math.floor(a),e=b>2026?'present':Math.floor(b);return
 document.getElementById('tl').innerHTML=J.map(([a,b,r,o,bde])=>`<div class="tr"><div class="who"><b>${r}</b><span>${o}</span></div><div class="track"><div class="bar${bde?' bde':''}${a>2010?' r':''}" style="left:${pc(a)}%;width:${pc(b)-pc(a)}%"><em>${span(a,b)}</em></div></div></div>`).join('');
 document.getElementById('ticks').innerHTML=[1994,2000,2005,2010,2015,2020,2026].map((y,i)=>`<span class="${i%2&&i<6?'o':''}" style="left:${pc(y)}%">${y}</span>`).join('');
 
-document.getElementById('copy').addEventListener('click',async e=>{try{await navigator.clipboard.writeText('mario.bajo@bde.es');e.target.textContent='Copied'}catch(_){e.target.textContent='Select the address to copy'}});
+const ext=()=>document.querySelectorAll('a[href^="http"]').forEach(a=>{if(a.host!==location.host){a.target='_blank';a.rel='noopener noreferrer'}});
+ext();
+document.getElementById('tabs').addEventListener('click',ext);
+
+const TO='mariobajo@gmail.com';
+const form=document.getElementById('cf'),btn=document.getElementById('cf-btn'),st=document.getElementById('cf-status');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const req=[...form.querySelectorAll('[required]')];
+  let ok=true;
+  req.forEach(f=>{const bad=f.type==='checkbox'?!f.checked:!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value));f.classList.toggle('bad',bad);if(bad)ok=false});
+  if(!ok){st.textContent='Please complete the highlighted fields.';return}
+  if(form._honey.value)return;
+  const d=Object.fromEntries(new FormData(form));
+  delete d._honey;
+  d._subject='Web contact: '+d.topic+' ('+d.name+')';
+  d._replyto=d.email;
+  d._template='table';
+  btn.disabled=true;st.textContent='Sending...';
+  try{
+    const r=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok||j.success==='false'||j.success===false)throw new Error(j.message||'send failed');
+    form.reset();st.textContent='Thank you. Your message has been sent and I will reply by e-mail.';
+  }catch(_){st.textContent='The message could not be sent right now. Please try again later or contact me through LinkedIn.'}
+  btn.disabled=false;
+});
 }
 </script>
 </body>
