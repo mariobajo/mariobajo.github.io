@@ -178,9 +178,12 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .rows{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
 .rows li{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:4px 20px;padding:12px 0;border-bottom:1px solid var(--rule)}
 .rows .yr{color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
-.book{border:1px solid var(--rule);background:var(--bg);padding:22px;border-radius:2px}
-.book .cover{aspect-ratio:3/4;max-width:150px;background:var(--teal);color:#fff;padding:16px 14px;font:400 15px/1.25 "Libre Caslon Text",Georgia,serif;margin-bottom:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:4px 4px 0 var(--rule)}
-.book .cover small{font:12px Inter,sans-serif;color:#cfe3e1}
+.book{border:1px solid var(--rule);background:var(--bg);border-radius:2px;overflow:hidden;align-self:start}
+.bkp{margin:0}
+.bkp img{width:100%;height:auto}
+.bkp figcaption{font-size:13px;color:var(--mute);padding:8px 22px 0}
+.bkrow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:18px;padding:16px 22px 22px;align-items:start}
+.bkc{width:104px;height:auto;border-radius:2px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .tl{border-top:2px solid var(--ink)}
 .sede{margin:clamp(-12px,-1vw,0px) 0 clamp(18px,2.5vw,32px)}
 .sede img{width:100%;height:auto;aspect-ratio:1400/349;object-fit:cover;object-position:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 80%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 80%,transparent 100%);mask-composite:intersect}
@@ -372,9 +375,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
         </ul>
       </div>
       <div class="book">
-        <div class="cover" aria-hidden="true">Gestión activa de carteras de renta fija<small>Bajo &amp; Rodríguez · BME</small></div>
+        <figure class="bkp"><img src="img/libro-presentacion.jpg" alt="Book presentation at the Bolsa de Madrid" width="960" height="612" loading="lazy"><figcaption><span class="E">Book presentation at the Bolsa de Madrid, February 2014.</span><span class="S">Presentación del libro en la Bolsa de Madrid, febrero de 2014.</span></figcaption></figure>
+        <div class="bkrow"><img class="bkc" src="img/libro.jpg" alt="Gestión activa de carteras de renta fija" width="330" height="430" loading="lazy"><div>
         <h3>Gestión activa de carteras de renta fija: un enfoque práctico</h3>
-        <p style="margin:8px 0 0;color:var(--mute);font-size:15px"><span class="E">With E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. A practical companion to the fixed income course.</span><span class="S">Con E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. Complemento práctico del curso de renta fija.</span></p>
+        <p style="margin:8px 0 0;color:var(--mute);font-size:15px"><span class="E">With E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. A practical companion to the fixed income course.</span><span class="S">Con E. Rodríguez (2014). Colección Estudios &amp; Investigación, Bolsas y Mercados Españoles, Madrid. ISBN 978-84-616-7388-9. Complemento práctico del curso de renta fija.</span></p></div></div>
       </div>
     </div>
   </div>
