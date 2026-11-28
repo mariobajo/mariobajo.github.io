@@ -162,6 +162,23 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .screen .s{width:8.5em}
 .screen .l{width:7em}
 .screen .l a{display:inline-block;white-space:nowrap;margin-right:10px}
+.tw{display:flex;gap:16px;align-items:flex-start}
+.pthumb{flex:none;padding:0;border:0;background:none;cursor:zoom-in;line-height:0;border-radius:2px;transition:transform .15s}
+.pthumb img{width:60px;height:auto;border:1px solid var(--rule);box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.pthumb:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.pthumb{transition:none}.pthumb:hover{transform:none}}
+#pv{border:0;padding:0;width:min(1120px,94vw);max-height:92vh;background:var(--bg);color:var(--ink);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+#pv::backdrop{background:rgba(1,8,9,.78)}
+.pvh{display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border-bottom:1px solid var(--rule)}
+.pvh>div{flex:1 1 auto;min-width:0}
+.pvh h3{margin:0;font-size:clamp(18px,2vw,22px)}
+.pvh p{margin:4px 0 0;font-size:14px;color:var(--mute)}
+.pvx{flex:none;width:44px;height:44px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+.pvb{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:20px;padding:20px;background:var(--soft);overflow:auto;max-height:calc(92vh - 90px)}
+.pvb figure{margin:0}
+.pvb img{width:100%;height:auto;border:1px solid var(--rule);background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.pvb figcaption{font-size:13px;color:var(--mute);margin-top:8px}
+@media(max-width:700px){.pvb{grid-template-columns:minmax(0,1fr)}}
 .st{display:inline-block;font-size:13px;line-height:1.4;padding:2px 8px;border-radius:2px;white-space:nowrap;border:1px solid currentColor}
 .s-pub{background:var(--tealx);border-color:var(--tealx);color:var(--bg)}
 .s-fwd{color:var(--tealx)}
@@ -278,7 +295,7 @@ footer{background:var(--deep);color:#bcd8d6;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(5vw,16px)}
 @media(max-width:900px){.tool{grid-template-columns:minmax(0,1fr)}.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){.mast>.wrap{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ph"}.photo{min-height:0;aspect-ratio:4/5;max-height:440px;margin-top:24px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
-@media(max-width:600px){.mrow{grid-template-columns:auto minmax(0,1fr)}.mrow .mmeta{grid-column:1/2}.mrow .dl{grid-column:2/3;justify-self:end}.sede img{aspect-ratio:16/7;object-position:42% 40%}.news .wrap{grid-template-columns:minmax(0,1fr)}.news li{grid-template-columns:minmax(0,1fr)}.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #1f5357}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
+@media(max-width:600px){.mrow{grid-template-columns:auto minmax(0,1fr)}.mrow .mmeta{grid-column:1/2}.mrow .dl{grid-column:2/3;justify-self:end}.sede img{aspect-ratio:16/7;object-position:42% 40%}.news .wrap{grid-template-columns:minmax(0,1fr)}.news li{grid-template-columns:minmax(0,1fr)}.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #1f5357}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen td.ve,.screen td.s,.screen td.l,.screen td.y{width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
 </style>
 </head>
 <body>
@@ -563,6 +580,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
   </div>
 </section>
 
+<dialog id="pv" aria-labelledby="pvt">
+  <div class="pvh"><div><h3 id="pvt"></h3><p id="pvm"></p></div><button type="button" class="pvx" id="pvx" aria-label="Close">×</button></div>
+  <div class="pvb"><figure><img id="pvc" alt=""><figcaption id="pvcc"></figcaption></figure><figure><img id="pvp" alt=""><figcaption id="pvpc"></figcaption></figure></div>
+</dialog>
+
 <footer><div class="wrap"><span>© 2026 Mario Bajo Traver</span><span><span class="E">Views expressed in the research listed here are the author's and do not necessarily reflect those of Banco de España or the Eurosystem.</span><span class="S">Las opiniones expresadas en los trabajos aquí recogidos son del autor y no reflejan necesariamente las del Banco de España ni las del Eurosistema.</span></span></div></footer>
 
 <script>
@@ -575,7 +597,7 @@ const P=[
 {k:'pub',y:'2026',t:'Harvesting Term and Credit Risk Premia: A Regime-Based Fixed-Income Allocation Framework',v:'The Journal of Fixed Income',l:[doi('10.3905/jfi.2026.029')]},
 {k:'pub',y:'2026',w:'E. Rodríguez',t:'Balancing Financial and Sustainable Objectives in Sovereign Bond Portfolios Using Multi-Objective Optimization',v:'The Journal of Impact and ESG Investing',x:'6(3), 54–83',l:[doi('10.3905/jesg.2026.1.149')]},
 {k:'pub',y:'2025',t:'Enhancing Diversification in Fixed-Income Portfolios: An Entropy-Based Optimization Framework',v:'Journal of Asset Management',x:'26(7), 863–882',l:[doi('10.1057/s41260-025-00428-w')]},
-{k:'pub',y:'2023',w:'E. Rodríguez',t:'Green Parity and the Decarbonization of Corporate Bond Portfolios',v:'Financial Analysts Journal',x:'79(4), 118–137',l:[doi('10.1080/0015198X.2023.2246579')]},
+{k:'pub',y:'2023',w:'E. Rodríguez',t:'Green Parity and the Decarbonization of Corporate Bond Portfolios',v:'Financial Analysts Journal',cover:'img/pubs/faj-2023-cover.jpg',page:'img/pubs/faj-2023-p1.jpg',x:'79(4), 118–137',l:[doi('10.1080/0015198X.2023.2246579')]},
 {k:'wp',y:'2026',st:'Revise and resubmit',t:'When Is the Yield Curve Enough? The Conditional Equivalence of Carry Strategies and Risk-Based Allocation',v:'SSRN WP 6480378',n:'The Journal of Fixed Income',l:[ssrn(6480378)]},
 {k:'wp',y:'2026',st:'Under review',t:'Market Regimes and Model Uncertainty in Portfolio Construction: Select or Diversify?',v:'SSRN WP 7533559',n:'The Journal of Portfolio Management',l:[ssrn(7533559)]},
 {k:'wp',y:'2026',st:'Under review',w:'A. Rodríguez Domínguez',t:'The Sharpe Stability Ratio: Temporal Consistency of Risk-Adjusted Performance',v:'SSRN WP 6344658',n:'Journal of Asset Management',l:[ssrn(6344658)]},
@@ -611,8 +633,19 @@ const TX={
 const list=document.getElementById('pubs'),count=document.getElementById('count');
 const SC={'Published':'s-pub','Forthcoming':'s-fwd','Revise and resubmit':'s-rr','Under review':'s-ur','Working paper':'s-wp','Book':'s-bk','Report':'s-bk'};
 const stOf=p=>p.st||(p.k==='wp'?'Working paper':'Published');
-const item=p=>{const s=stOf(p),X=TX[L];return `<tr><td class="y">${esc(p.y)}</td><td class="t"><div class="ti">${esc(p.t)}</div>${p.e&&L==='en'?`<div class="tx">${esc(p.e)}</div>`:''}${p.w?`<div class="au">${X.with} ${esc(p.w)}</div>`:''}</td><td class="ve"><i>${esc(tr(p.v))}</i>${p.x?`<small>${esc(tr(p.x))}</small>`:''}${p.n?`<small>${X.sub} ${esc(p.n)}</small>`:''}</td><td class="s"><span class="st ${SC[s]}"${s==='Revise and resubmit'?` title="${X.rr}"`:''}>${esc(X.st[s])}</span></td><td class="l">${p.l.map(([a,u])=>`<a href="${esc(u)}">${esc(a)}</a>`).join('')}</td></tr>`};
+const item=p=>{const s=stOf(p),X=TX[L];return `<tr><td class="y">${esc(p.y)}</td><td class="t">${p.cover?`<div class="tw"><button type="button" class="pthumb" data-i="${P.indexOf(p)}" aria-label="${L==='es'?'Ver portada y primera página':'View cover and first page'}"><img src="${esc(p.cover)}" alt="" width="60" height="78" loading="lazy"></button><div>`:''}<div class="ti">${esc(p.t)}</div>${p.e&&L==='en'?`<div class="tx">${esc(p.e)}</div>`:''}${p.w?`<div class="au">${X.with} ${esc(p.w)}</div>`:''}${p.cover?'</div></div>':''}</td><td class="ve"><i>${esc(tr(p.v))}</i>${p.x?`<small>${esc(tr(p.x))}</small>`:''}${p.n?`<small>${X.sub} ${esc(p.n)}</small>`:''}</td><td class="s"><span class="st ${SC[s]}"${s==='Revise and resubmit'?` title="${X.rr}"`:''}>${esc(X.st[s])}</span></td><td class="l">${p.l.map(([a,u])=>`<a href="${esc(u)}">${esc(a)}</a>`).join('')}</td></tr>`};
 const show=k=>{cur=k;const r=P.filter(p=>k==='all'||p.k===k);list.innerHTML=r.map(item).join('');count.textContent=r.length+' '+TX[L][k];document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));ext()};
+const pv=document.getElementById('pv');
+const openPv=i=>{const p=P[i];if(!p||!p.cover||!pv.showModal)return;const es=L==='es';
+  document.getElementById('pvt').textContent=p.t;
+  const link=p.l&&p.l[0];document.getElementById('pvm').innerHTML=`<i>${esc(tr(p.v))}</i>${p.x?', '+esc(tr(p.x)):''} (${esc(p.y)})`+(link?` · <a href="${esc(link[1])}" target="_blank" rel="noopener noreferrer">${esc(link[0])} →</a>`:'');
+  const c=document.getElementById('pvc'),pg=document.getElementById('pvp');c.src=p.cover;c.alt=(es?'Portada de ':'Cover of ')+tr(p.v);
+  document.getElementById('pvcc').textContent=es?'Portada del número':'Issue cover';
+  if(p.page){pg.src=p.page;pg.alt=es?'Primera página del artículo':'First page of the article';pg.parentElement.hidden=false;document.getElementById('pvpc').textContent=es?'Primera página del artículo':'First page of the article'}else pg.parentElement.hidden=true;
+  pv.showModal()};
+list.addEventListener('click',e=>{const b=e.target.closest('.pthumb');if(b)openPv(+b.dataset.i)});
+document.getElementById('pvx').addEventListener('click',()=>pv.close());
+pv.addEventListener('click',e=>{if(e.target===pv)pv.close()});
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(b.dataset.k)});
 
 const yrsSince=2026-1994;
