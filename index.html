@@ -174,6 +174,48 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .course h3{margin-bottom:10px}
 .course p{margin:0 0 12px;color:var(--mute);font-size:15px}
 .course ul{margin:auto 0 0;padding-left:18px;font-size:15px}
+.tools{color:#e6f0ef;background:radial-gradient(70% 90% at 85% 0%,rgba(38,160,150,.30) 0%,rgba(0,0,0,0) 65%),linear-gradient(180deg,#06292c 0%,#031416 55%,#010506 100%)}
+.tools h2,.tools h3{color:#fff}
+.tools .lede{color:#9fc3c0}
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(20px,3vw,40px);align-items:stretch;border:1px solid #1f5357;border-radius:4px;padding:clamp(18px,2.5vw,28px);background:rgba(255,255,255,.02)}
+.tool.live{grid-template-columns:minmax(0,1fr)}
+.tk{margin:0 0 8px;font-size:13px;color:#5fe0c8}
+.tool h3{font-size:clamp(22px,2.4vw,28px);margin-bottom:10px}
+.tinfo p{margin:0 0 12px;color:#cfe3e1;max-width:46ch}
+.tbtns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 12px}
+.tgo,.tplay{font:500 15px Inter,sans-serif;min-height:44px;padding:0 18px;border-radius:2px;border:1px solid #5fe0c8;background:#5fe0c8;color:#031416;cursor:pointer}
+.tgo:hover,.tplay:hover{background:#8ff0dd}
+.tlink{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid #2a6e72;border-radius:2px;color:#e6f0ef;text-decoration:none;font-size:15px}
+.tlink:hover{border-color:#5fe0c8;color:#fff}
+.tools .tnote{font-size:13px;color:#7fa9a6}
+.tframe{position:relative;min-height:280px;border:1px solid #1f5357;border-radius:3px;background:#020b0c;overflow:hidden;display:grid;place-items:center}
+.tart{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.tplay{position:relative;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.tframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+.tool.live .tframe{min-height:0;height:min(82vh,860px)}
+.mat{margin:0 0 44px}
+.mat h3{margin-bottom:6px}
+.mat .note{color:var(--mute);font-size:15px;margin:0 0 16px}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.mc{border:1px solid var(--rule);background:var(--soft);border-radius:2px;padding:18px 20px}
+.mc.open{grid-column:1/-1;background:var(--bg)}
+.mc header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:12px;color:var(--tealx)}
+.mc header svg{flex:none}
+.mc h4{margin:0 auto 0 0;font:400 19px/1.25 "Libre Caslon Text",Georgia,serif;color:var(--ink)}
+.mupd{font-size:13px;color:var(--mute)}
+.mform{display:flex;flex-wrap:wrap;gap:8px}
+.mform input{flex:1 1 170px;font:16px Inter,sans-serif;min-height:44px;padding:0 12px;border:1px solid var(--rule);border-radius:2px;background:var(--bg);color:var(--ink)}
+.mform button,.mc .dl,.mc .lock{font:500 15px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:2px;cursor:pointer;border:1px solid var(--teal);background:var(--teal);color:#fff;white-space:nowrap}
+.mc .lock{background:transparent;color:var(--tealx);border-color:var(--rule);min-height:38px}
+.mform button:disabled,.mc .dl:disabled{opacity:.6;cursor:wait}
+.merr{color:light-dark(#b3261e,#ff9a8a);font-size:14px;margin:8px 0 0;min-height:1.2em}
+.msec{font-size:14px;font-weight:600;color:var(--mute);margin:16px 0 2px}
+.mrow{display:grid;grid-template-columns:6.5em minmax(0,1fr) auto auto;gap:6px 16px;align-items:center;padding:10px 0;border-top:1px solid var(--rule)}
+.mtype{justify-self:start;font-size:13px;padding:2px 8px;border:1px solid currentColor;border-radius:2px;color:var(--tealx);white-space:nowrap}
+.mname{font-size:15px;overflow-wrap:anywhere}
+.mname small{display:block;font-size:13px;color:var(--mute)}
+.mmeta{font-size:13px;color:var(--mute);white-space:nowrap;font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .teach{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
 .rows{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
 .rows li{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:4px 20px;padding:12px 0;border-bottom:1px solid var(--rule)}
@@ -234,9 +276,9 @@ nav.top .links a:hover{color:#fff;text-decoration:underline}
 .send p{margin:0;font-size:15px;color:#fff;max-width:40ch}
 footer{background:var(--deep);color:#bcd8d6;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(5vw,16px)}
-@media(max-width:900px){.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.tool{grid-template-columns:minmax(0,1fr)}.courses{grid-template-columns:minmax(0,1fr)}.cols3{grid-template-columns:minmax(0,1fr)}.teach{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){.mast>.wrap{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ph"}.photo{min-height:0;aspect-ratio:4/5;max-height:440px;margin-top:24px}.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.axis,.tr{grid-template-columns:minmax(0,1fr)}.axis .lab{display:none}.tr{gap:6px}}
-@media(max-width:600px){.sede img{aspect-ratio:16/7;object-position:42% 40%}.news .wrap{grid-template-columns:minmax(0,1fr)}.news li{grid-template-columns:minmax(0,1fr)}.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #1f5357}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
+@media(max-width:600px){.mrow{grid-template-columns:auto minmax(0,1fr)}.mrow .mmeta{grid-column:1/2}.mrow .dl{grid-column:2/3;justify-self:end}.sede img{aspect-ratio:16/7;object-position:42% 40%}.news .wrap{grid-template-columns:minmax(0,1fr)}.news li{grid-template-columns:minmax(0,1fr)}.cf .row2{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.rows li{grid-template-columns:minmax(0,1fr)}.figs div:nth-child(3){border-left:0;padding-left:0}.figs div:nth-child(n+3){border-top:1px solid #1f5357}.screen thead{display:none}.screen tr{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'y s' 't t' 'v v' 'l l';gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}.screen td{border:0;padding:0;width:auto}.screen .y{grid-area:y}.screen .s{grid-area:s}.screen .t{grid-area:t}.screen .ve{grid-area:v}.screen .l{grid-area:l}.screen td:empty{display:none}nav.top .wrap{padding-block:6px}nav.top .me{order:1}nav.top .lang{order:2}nav.top .links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:2px}nav.top .links a{flex:none}.ticks span.o{display:none}}
 </style>
 </head>
 <body>
@@ -244,7 +286,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
   <div class="wrap">
     <a class="me" href="#top">Mario Bajo Traver</a>
     <div class="links">
-      <a href="#about"><span class="E">About</span><span class="S">Perfil</span></a><a href="#research"><span class="E">Research</span><span class="S">Investigación</span></a><a href="#teaching"><span class="E">Teaching</span><span class="S">Docencia</span></a><a href="#career"><span class="E">Career</span><span class="S">Trayectoria</span></a><a href="#contact"><span class="E">Contact</span><span class="S">Contacto</span></a>
+      <a href="#about"><span class="E">About</span><span class="S">Perfil</span></a><a href="#research"><span class="E">Research</span><span class="S">Investigación</span></a><a href="#tools"><span class="E">Tools</span><span class="S">Herramientas</span></a><a href="#teaching"><span class="E">Teaching</span><span class="S">Docencia</span></a><a href="#career"><span class="E">Career</span><span class="S">Trayectoria</span></a><a href="#contact"><span class="E">Contact</span><span class="S">Contacto</span></a>
     </div>
     <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="es" aria-pressed="false">ES</button></div>
   </div>
@@ -349,6 +391,38 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
   </div>
 </section>
 
+<section class="band tools" id="tools">
+  <div class="wrap">
+    <h2><span class="E">Interactive tools</span><span class="S">Herramientas interactivas</span></h2>
+    <p class="lede"><span class="E">Applications built in Python from my research and teaching, free to use in the browser.</span><span class="S">Aplicaciones en Python surgidas de mi investigación y docencia, de uso libre en el navegador.</span></p>
+    <article class="tool">
+      <div class="tinfo">
+        <p class="tk">Streamlit · Python</p>
+        <h3>Portfolio Optimization Tool</h3>
+        <p class="E">Interactive web application to build, optimise and compare investment portfolios.</p>
+        <p class="S">Aplicación web interactiva para construir, optimizar y comparar carteras de inversión.</p>
+        <div class="tbtns">
+          <button type="button" class="tgo" id="toolGo"><span class="E">Open here</span><span class="S">Abrir aquí</span></button>
+          <a class="tlink" href="https://portfolio-optimization-tool.streamlit.app/"><span class="E">Open in a new tab</span><span class="S">Abrir en pestaña nueva</span></a>
+          <a class="tlink" href="https://github.com/mariobajo/portfolio-optimization-tool"><span class="E">Source code</span><span class="S">Código fuente</span></a>
+        </div>
+        <p class="tnote"><span class="E">If the app has been idle it may take up to a minute to wake up.</span><span class="S">Si la app lleva tiempo sin usarse, puede tardar hasta un minuto en arrancar.</span></p>
+      </div>
+      <div class="tframe" id="toolFrame">
+        <svg class="tart" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <defs><linearGradient id="tfg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fe0c8" stop-opacity=".28"/><stop offset="1" stop-color="#5fe0c8" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="#ffffff" stroke-opacity=".08"><line x1="40" y1="40" x2="40" y2="210"/><line x1="40" y1="210" x2="370" y2="210"/><line x1="40" y1="155" x2="370" y2="155"/><line x1="40" y1="100" x2="370" y2="100"/></g>
+          <path d="M70 196 C 80 120, 130 78, 210 62 S 330 48, 362 44 L362 210 L70 210 Z" fill="url(#tfg)"/>
+          <path d="M70 196 C 80 120, 130 78, 210 62 S 330 48, 362 44" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <g fill="#8fb8b5" fill-opacity=".55"><circle cx="120" cy="170" r="3.5"/><circle cx="150" cy="140" r="3.5"/><circle cx="185" cy="150" r="3.5"/><circle cx="220" cy="118" r="3.5"/><circle cx="250" cy="132" r="3.5"/><circle cx="280" cy="98" r="3.5"/><circle cx="300" cy="120" r="3.5"/><circle cx="330" cy="88" r="3.5"/><circle cx="170" cy="185" r="3.5"/><circle cx="240" cy="165" r="3.5"/></g>
+          <circle cx="210" cy="62" r="6" fill="#5fe0c8" stroke="#fff" stroke-width="2"/>
+        </svg>
+        <button type="button" class="tplay" id="toolPlay"><span class="E">Launch the app</span><span class="S">Abrir la aplicación</span></button>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section class="band" id="teaching">
   <div class="wrap">
     <h2><span class="E">Teaching</span><span class="S">Docencia</span></h2>
@@ -357,6 +431,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
       <article class="course"><h3><span class="E">Advanced Fixed Income</span><span class="S">Renta fija avanzada</span></h3><p class="E">Yield curve analytics and active bond portfolio management.</p><p class="S">Análisis de la curva de tipos y gestión activa de carteras de bonos.</p><ul class="E"><li>Duration and curve positioning</li><li>Carry, roll-down and butterfly trades</li><li>Principal components of the curve</li></ul><ul class="S"><li>Duración y posicionamiento en la curva</li><li>Estrategias de carry, roll-down y butterfly</li><li>Componentes principales de la curva</li></ul></article>
       <article class="course"><h3><span class="E">Portfolio Construction</span><span class="S">Construcción de carteras</span></h3><p class="E">From the investment policy to the strategic benchmark.</p><p class="S">De la política de inversión a la cartera de referencia estratégica.</p><ul class="E"><li>Mean-variance and risk-based allocation</li><li>Diversification and regime-based models</li><li>Performance evaluation</li></ul><ul class="S"><li>Asignación media-varianza y basada en riesgo</li><li>Diversificación y modelos de regímenes</li><li>Evaluación de resultados</li></ul></article>
       <article class="course"><h3>Machine Learning</h3><p class="E">Quantitative and machine learning methods for investment decisions.</p><p class="S">Métodos cuantitativos y de machine learning para decisiones de inversión.</p><ul class="E"><li>Clustering and hierarchical allocation</li><li>Regime detection</li><li>Python case studies</li></ul><ul class="S"><li>Clustering y asignación jerárquica</li><li>Detección de regímenes</li><li>Casos prácticos en Python</li></ul></article>
+    </div>
+    <div class="mat" id="mat" hidden>
+      <h3><span class="E">Course materials</span><span class="S">Materiales de los cursos</span></h3>
+      <p class="note"><span class="E">For students of my courses. Enter the password given in class.</span><span class="S">Para los alumnos de mis cursos. Introduzca la contraseña facilitada en clase.</span></p>
+      <div class="mgrid" id="matGrid"></div>
     </div>
     <div class="teach">
       <div>
@@ -610,6 +689,47 @@ const roCurve=new ResizeObserver(drawCurve);roCurve.observe(svg);
 
 
 document.querySelectorAll('img.ico').forEach(i=>{const ok=()=>{if(i.naturalWidth)i.classList.add('ok')};if(i.complete)ok();else i.addEventListener('load',ok)});
+let MATI=null;const MS={};
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const LOCK='<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+const UNLOCK='<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.5a4 4 0 0 1 7.7-1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+const MT={en:{pw:'Password',open:'Unlock',lock:'Lock',bad:'Incorrect password.',net:'Could not load the materials. Try again later.',busy:'Checking…',dl:'Download',dec:'Decrypting…',err:'Download failed',gen:'General',upd:'Updated',none:'No materials yet.'},
+          es:{pw:'Contraseña',open:'Desbloquear',lock:'Bloquear',bad:'Contraseña incorrecta.',net:'No se han podido cargar los materiales. Inténtelo más tarde.',busy:'Comprobando…',dl:'Descargar',dec:'Descifrando…',err:'Error al descargar',gen:'General',upd:'Actualizado',none:'Todavía no hay materiales.'}};
+const fsz=n=>n>=1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB';
+const MIME={pdf:'application/pdf',csv:'text/csv',txt:'text/plain',zip:'application/zip'};
+const deriveK=async(pw,c)=>{const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(c.salt),iterations:MATI.kdf.iterations,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt'])};
+const decB=async(key,buf)=>{const u=new Uint8Array(buf);return crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},key,u.slice(12))};
+const renderMat=()=>{
+  const box=document.getElementById('matGrid');if(!box||!MATI)return;const X=MT[L];
+  box.innerHTML=MATI.courses.map(c=>{const s=MS[c.id]||{},t=esc(c.title[L]||c.title.en||c.id),id=esc(c.id);
+    if(s.man){const fl=s.man.files,secs=[...new Set(fl.map(f=>f.section))];
+      return `<article class="mc open" data-id="${id}"><header>${UNLOCK}<h4>${t}</h4><span class="mupd">${X.upd} ${fd(s.man.updated)}</span><button type="button" class="lock" data-act="lock">${X.lock}</button></header>`+
+      (fl.length?secs.map(sec=>(secs.length>1||sec?`<p class="msec">${esc(sec||X.gen)}</p>`:'')+fl.filter(f=>f.section===sec).map(f=>`<div class="mrow"><span class="mtype">${esc(f.type)}</span><span class="mname">${esc(f.name)}${f.desc?`<small>${esc(f.desc[L]||f.desc.en||'')}</small>`:''}</span><span class="mmeta">${fd(f.date)} · ${fsz(f.size)}</span><button type="button" class="dl" data-act="dl" data-blob="${esc(f.blob)}">${X.dl}</button></div>`).join('')).join(''):`<p class="note">${X.none}</p>`)+`</article>`}
+    return `<article class="mc" data-id="${id}"><header>${LOCK}<h4>${t}</h4></header><form class="mform"><label class="sr" for="pw-${id}">${X.pw}</label><input id="pw-${id}" type="password" autocomplete="current-password" placeholder="${X.pw}" required><button type="submit"${s.busy?' disabled':''}>${s.busy?X.busy:X.open}</button></form><p class="merr" role="status">${s.err?X[s.err]:''}</p></article>`}).join('');
+  document.getElementById('mat').hidden=false};
+const unlockMat=async(id,pw,silent)=>{
+  const c=MATI.courses.find(x=>x.id===id);if(!c)return;const s=MS[id]||(MS[id]={});s.busy=true;s.err='';renderMat();
+  let stage='net';
+  try{const key=await deriveK(pw,c);const r=await fetch(c.manifest,{cache:'no-cache'});if(!r.ok)throw 0;const buf=await r.arrayBuffer();stage='bad';const pt=await decB(key,buf);
+    s.key=key;s.man=JSON.parse(new TextDecoder().decode(pt));try{sessionStorage.setItem('mbt-mat-'+id,pw)}catch(_){}}
+  catch(_){s.key=null;s.man=null;if(!silent)s.err=stage;try{sessionStorage.removeItem('mbt-mat-'+id)}catch(_){}}
+  s.busy=false;renderMat()};
+const dlMat=async(id,blob,btn)=>{
+  const s=MS[id],f=s&&s.man&&s.man.files.find(x=>x.blob===blob);if(!f)return;btn.disabled=true;btn.textContent=MT[L].dec;
+  try{const r=await fetch(`materials/${id}/${blob}`,{cache:'no-cache'});if(!r.ok)throw 0;const pt=await decB(s.key,await r.arrayBuffer());
+    const ext=(f.name.split('.').pop()||'').toLowerCase(),url=URL.createObjectURL(new Blob([pt],{type:MIME[ext]||'application/octet-stream'}));
+    const a=document.createElement('a');a.href=url;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);btn.textContent=MT[L].dl}
+  catch(_){btn.textContent=MT[L].err}
+  btn.disabled=false};
+const mg=document.getElementById('matGrid');
+mg.addEventListener('submit',e=>{e.preventDefault();const card=e.target.closest('.mc'),inp=card&&card.querySelector('input[type=password]');if(card&&inp&&inp.value)unlockMat(card.dataset.id,inp.value,false)});
+mg.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(!b)return;const id=b.closest('.mc').dataset.id;
+  if(b.dataset.act==='lock'){delete MS[id];try{sessionStorage.removeItem('mbt-mat-'+id)}catch(_){}renderMat()}
+  else if(b.dataset.act==='dl')dlMat(id,b.dataset.blob,b)});
+const launchTool=()=>{const f=document.getElementById('toolFrame');if(!f||f.querySelector('iframe'))return;
+  const ifr=document.createElement('iframe');ifr.src='https://portfolio-optimization-tool.streamlit.app/?embed=true';ifr.title='Portfolio Optimization Tool';ifr.loading='lazy';ifr.allow='clipboard-write';
+  f.innerHTML='';f.appendChild(ifr);f.closest('.tool').classList.add('live');f.scrollIntoView({block:'start'})};
+document.getElementById('toolGo').addEventListener('click',launchTool);document.getElementById('toolPlay').addEventListener('click',launchTool);
 const TO='e32b7656901ce7dec7e3c25ea4e37f36';
 const form=document.getElementById('cf'),btn=document.getElementById('cf-btn'),st=document.getElementById('cf-status');
 form.addEventListener('submit',async e=>{
@@ -659,12 +779,13 @@ const setLang=l=>{
   L=l==='es'?'es':'en';
   const r=document.documentElement;r.dataset.lang=L;r.lang=L;
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===L));
-  show(cur);drawFigs();drawTl();setTopics();setCap();renderTape();renderNews();if(typeof drawCurve==='function')drawCurve();st.textContent='';
+  show(cur);drawFigs();drawTl();setTopics();setCap();renderTape();renderNews();renderMat();if(typeof drawCurve==='function')drawCurve();st.textContent='';
   try{localStorage.setItem('mbt-lang',L)}catch(_){}
 };
 document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setLang(b.dataset.set)});
 let saved=null;try{saved=localStorage.getItem('mbt-lang')}catch(_){}
 setLang(saved||((navigator.language||'en').toLowerCase().startsWith('es')?'es':'en'));
+fetch('materials/index.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||!Array.isArray(j.courses)||!j.courses.length||!(window.crypto&&crypto.subtle))return;MATI=j;renderMat();j.courses.forEach(c=>{let p=null;try{p=sessionStorage.getItem('mbt-mat-'+c.id)}catch(_){}if(p)unlockMat(c.id,p,true)})}).catch(()=>{});
 fetch('data/news.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{if(j){NEWS=j;renderNews()}}).catch(()=>{});
 fetch('data/market.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{if(j){MD=j;drawCurve();setCap();renderTape()}}).catch(()=>{});
 }
